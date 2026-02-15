@@ -1,0 +1,184 @@
+{
+  "profile": {
+    "name": "Tilahun Alene Terfie",
+    "title": "Innovation and Sustainable Business Professional",
+    "location": "Addis Ababa, Ethiopia",
+    "email": "tilahunalenee@gmail.com",
+    "phone": "+251 941 883 746",
+    "nationality": "Ethiopian",
+    "current_focus": "MBA in Sustainable International Business and Foreign Trade"
+  },
+  "summary": "Senior innovation and sustainable business professional with 15+ years of leadership in public sector innovation systems, startup ecosystem coordination, and policy implementation. Experienced in national innovation programs, institutional collaboration, and strategic development initiatives. Internationally trained in innovation systems, sustainability, and civic engagement.",
+  "story": [
+    {
+      "year": "2013",
+      "title": "Education and Curriculum Coordination",
+      "detail": "Joined Addis Ababa Education Bureau to coordinate curriculum reform, support educator development, and strengthen education policy implementation."
+    },
+    {
+      "year": "2016",
+      "title": "Regional Innovation Coordination",
+      "detail": "Led councils and regions coordination initiatives at the Ministry of Innovation and Technology, aligning regional innovation programs and performance tracking."
+    },
+    {
+      "year": "2021",
+      "title": "National Innovation Program Leadership",
+      "detail": "Appointed Project Manager to lead national startup development programs, multi-stakeholder collaboration, and policy execution for innovation-led growth."
+    },
+    {
+      "year": "2022",
+      "title": "International Exposure",
+      "detail": "Completed the African Civic Engagement Academy with the University of Georgia and U.S. Department of State, expanding civic innovation practice."
+    },
+    {
+      "year": "2024",
+      "title": "Sustainability and Global Innovation",
+      "detail": "Participated in the Scientific and Technological Innovation program for BRI countries (China) and sustainability training in the U.S."
+    },
+    {
+      "year": "Present",
+      "title": "MBA in India",
+      "detail": "Pursuing MBA focused on sustainable international business and foreign trade while continuing national innovation leadership."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Project Manager",
+      "organization": "Ministry of Innovation and Technology, Ethiopia",
+      "period": "Oct 2021 - Present",
+      "highlights": [
+        "Lead national innovation and startup development programs",
+        "Coordinate multi-stakeholder initiatives for technology-based enterprises",
+        "Support innovation policy implementation and strategic planning",
+        "Drive institutional capacity-building and digital transformation initiatives"
+      ]
+    },
+    {
+      "role": "Team Leader - Councils and Regions Coordination Directorate",
+      "organization": "Ministry of Innovation and Technology, Ethiopia",
+      "period": "2016 - 2021",
+      "highlights": [
+        "Coordinated innovation programs across regional governments",
+        "Supervised project implementation, monitoring, and reporting",
+        "Strengthened communication and institutional collaboration systems"
+      ]
+    },
+    {
+      "role": "Education Curriculum Coordinator",
+      "organization": "Addis Ababa Education Bureau",
+      "period": "2013 - 2016",
+      "highlights": [
+        "Coordinated curriculum reform and implementation initiatives",
+        "Supported training and professional development programs",
+        "Contributed to education policy execution"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "MBA (Ongoing)",
+      "field": "Sustainable International Business and Foreign Trade",
+      "institution": "India"
+    },
+    {
+      "degree": "MA",
+      "field": "Public Policy Studies",
+      "institution": "Ethiopian Civil Service University",
+      "year": "2021"
+    },
+    {
+      "degree": "BA",
+      "field": "Management",
+      "institution": "Bahir Dar University",
+      "year": "2022"
+    },
+    {
+      "degree": "BA",
+      "field": "Economics",
+      "institution": "Arsi University",
+      "year": "2021"
+    },
+    {
+      "degree": "BA",
+      "field": "History and Heritage Management",
+      "institution": "Debre Markos University",
+      "year": "2013"
+    }
+  ],
+  "programs": [
+    "Scientific and Technological Innovation for BRI Countries - Ministry of Commerce, China (2024)",
+    "African Civic Engagement Academy - University of Georgia and U.S. Department of State (2022)",
+    "Creative Economy Program - British Council (2022-2023)",
+    "Understanding Sustainability Basics - Florida University Southeast (2024)",
+    "Innovation Leadership and Design Thinking",
+    "Entrepreneurship and Startup Ecosystem Development (UNDP)",
+    "ISO 9001:2015 Quality Management Systems",
+    "Project Preparation and Appraisal",
+    "Workforce Collaboration and Development"
+  ],
+  "competencies": [
+    "Innovation ecosystem development",
+    "Startup incubation and acceleration support",
+    "Sustainable international business strategy",
+    "Foreign trade and market systems",
+    "Public policy analysis and implementation",
+    "Project and program management",
+    "Institutional coordination",
+    "Strategic planning and leadership",
+    "Cross-cultural collaboration"
+  ],
+  "technical": [
+    "Python",
+    "Django (fundamental level)",
+    "React (frontend basics)",
+    "MySQL concepts",
+    "AI-assisted digital portal development tools"
+  ],
+  "languages": [
+    "Amharic (native)",
+    "English (professional proficiency)"
+  ],
+  "interests": [
+    "Sustainable entrepreneurship",
+    "Innovation-led economic transformation",
+    "International trade development",
+    "Startup ecosystem strengthening",
+    "Technology-enabled public sector reform"
+  ],
+  "publications": [
+    {
+      "title": "Innovation and Sustainable Entrepreneurship in Emerging Economies",
+      "year": "In progress",
+      "type": "Research article",
+      "summary": "Explores policy and ecosystem levers that accelerate sustainable entrepreneurship in developing markets.",
+      "status": "Draft"
+    },
+    {
+      "title": "Regional Innovation Governance Models in Ethiopia",
+      "year": "In progress",
+      "type": "Policy brief",
+      "summary": "Compares governance approaches across regions to identify scalable coordination mechanisms.",
+      "status": "Concept"
+    }
+  ],
+  "ideas": [
+    {
+      "title": "Green Export Acceleration Hub",
+      "summary": "A multi-stakeholder platform that helps sustainable SMEs meet export compliance, certification, and logistics requirements.",
+      "impact": "Improves foreign exchange earnings while strengthening green supply chains.",
+      "stage": "Pilot concept"
+    },
+    {
+      "title": "Innovation Policy Observatory",
+      "summary": "A data-driven observatory tracking innovation performance indicators across regions to inform national policy.",
+      "impact": "Enables evidence-based policy design and investment prioritization.",
+      "stage": "Design"
+    },
+    {
+      "title": "Startup Readiness Fellowship",
+      "summary": "A capacity-building program for early-stage founders focused on market discovery, compliance, and investment readiness.",
+      "impact": "Improves survival and growth rates of technology-based startups.",
+      "stage": "Prototype"
+    }
+  ]
+}
