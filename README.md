@@ -1,48 +1,53 @@
 # Tilahun Profile Portal
 
-Full-stack profile portal with a Python (Django) backend and React frontend.
+Full-stack profile portal with Django backend and React frontend.
 
-## Quick Start
+## Deployment Mode
 
-### 1) Backend
+- Backend is private and local admin-only.
+- Public website is static on Netlify.
+- Content updates flow from Django admin to Netlify via snapshot export.
+
+This removes tunnel passwords and avoids exposing backend publicly.
+
+## Quick Start (Local)
+
+### Backend
 
 ```powershell
 cd backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
+
+MySQL mode:
+
+```powershell
 $env:MYSQL_DATABASE="tilahun_portal"
 $env:MYSQL_USER="root"
 $env:MYSQL_PASSWORD="your_password"
 $env:MYSQL_HOST="127.0.0.1"
 $env:MYSQL_PORT="3306"
-python manage.py makemigrations
 python manage.py migrate
-python manage.py seed_portal_content --reset
 python manage.py runserver 127.0.0.1:8000
 ```
 
-If MySQL is not ready yet, you can run a temporary local fallback:
+SQLite fallback:
 
 ```powershell
 $env:USE_SQLITE="1"
 python manage.py migrate
-python manage.py seed_portal_content --reset
 python manage.py runserver 127.0.0.1:8000
 ```
 
-Create an admin user (if needed):
+Admin:
 
-```powershell
-python manage.py createsuperuser
-```
-
-Default local admin in this environment:
-
+- URL: `http://127.0.0.1:8000/admin/`
 - Username: `admin`
 - Password: `admin123`
 
-### 2) Frontend
+### Frontend (local dynamic mode)
 
 ```powershell
 cd ..\frontend
@@ -50,80 +55,40 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Open `http://localhost:5173`.
 
-For production frontend builds (separate frontend/backend hosting), set:
+When running locally, frontend reads from `http://127.0.0.1:8000` automatically.
+
+## Content Management and Publish
+
+1. Update content in Django admin (`SiteProfile`, education, experience, skills, publications, ideas, media).
+2. Export static snapshot and media:
 
 ```powershell
-$env:VITE_API_BASE_URL="https://your-backend-domain.com"
-npm run build
+cd backend
+$env:USE_SQLITE="1"  # or your MySQL env vars
+python manage.py export_portal_snapshot
 ```
 
-## Update Content
+This command generates:
 
-Use Django admin at `http://127.0.0.1:8000/admin/`.
+- `frontend/public/published-content.json`
+- `frontend/public/published-media/*`
 
-Editable sections:
+3. Deploy frontend to Netlify:
 
-- `SiteProfile` (hero text, summary, contact data, hero image, CV document)
-- `StoryItem`
-- `ExperienceItem` + `ExperienceHighlight`
-- `EducationItem`
-- `ProgramItem`
-- `SkillItem` (core, technical, language, interest)
-- `PublicationItem` (links + uploaded docs/images)
-- `IdeaItem` (links + uploaded docs/images)
-- `MediaAsset` (images/documents by section)
+```powershell
+cd ..\frontend
+npm run build
+cd ..
+npx netlify-cli deploy --prod --dir frontend/dist
+```
 
-All sections support publishing and ordering via `is_published` and `sort_order`.
+Do not set `VITE_API_BASE_URL` in Netlify for private-backend mode.
 
-## Contact Messages
+## Why This Fixes Your Error
 
-Submitted messages are stored in MySQL via the `portal_contactmessage` table.
-
-## API Endpoints
-
-- `GET /` - backend status root
-- `GET /api/health`
-- `GET /api/content`
-- `GET /api/story`
-- `GET /api/publications`
-- `GET /api/ideas`
-- `GET /api/media`
-- `POST /api/contact`
-
-## Publish (Render + Netlify/Vercel)
-
-Backend (Render):
-
-1. Create a new Web Service from your GitHub repo, root `backend`.
-2. Build command:
-`pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput`
-3. Start command:
-`gunicorn config.wsgi:application`
-4. Set backend environment variables:
-- `DJANGO_DEBUG=0`
-- `DJANGO_SECRET_KEY=your-secret`
-- `DJANGO_ALLOWED_HOSTS=your-backend-domain.com`
-- `DJANGO_CORS_ALLOWED_ORIGINS=https://your-frontend-domain.com`
-- `DJANGO_CSRF_TRUSTED_ORIGINS=https://your-frontend-domain.com`
-- `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_HOST`, `MYSQL_PORT`
-
-Frontend (Netlify or Vercel):
-
-1. Deploy `frontend` folder.
-2. Build command: `npm run build`
-3. Publish directory: `dist`
-4. Set environment variable:
-- `VITE_API_BASE_URL=https://your-backend-domain.com`
-
-## Design Baseline
-
-The portal visual refresh uses a free template direction inspired by:
-
-- Start Bootstrap Freelancer (MIT): `https://startbootstrap.com/theme/freelancer`
-
-Template alternatives reviewed:
-
-- DevFolio (MIT): `https://github.com/saadpasta/developerFolio`
-- React Portfolio Template (MIT): `https://github.com/yujisatojr/react-portfolio-template`
+- No `loca.lt` tunnel needed.
+- No tunnel password prompt.
+- Backend stays private (local admin-only).
+- Public site remains fast and fully responsive.

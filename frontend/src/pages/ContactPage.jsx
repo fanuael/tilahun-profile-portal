@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { apiUrl } from '../api'
+import { apiUrl, hasBackendApi } from '../api'
 import Section from '../components/Section'
 
 const defaultForm = {
@@ -12,6 +12,7 @@ const defaultForm = {
 export default function ContactPage({ data, status }) {
   const [form, setForm] = useState(defaultForm)
   const [formStatus, setFormStatus] = useState('idle')
+  const apiFormEnabled = hasBackendApi && status === 'ready'
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -20,6 +21,21 @@ export default function ContactPage({ data, status }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
+    if (!apiFormEnabled) {
+      const subject = encodeURIComponent(form.subject || 'Profile Portal Contact')
+      const messageLines = [
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        '',
+        form.message
+      ]
+      const body = encodeURIComponent(messageLines.join('\n'))
+      window.location.href = `mailto:${data.profile.email}?subject=${subject}&body=${body}`
+      setFormStatus('mailto')
+      return
+    }
+
     setFormStatus('sending')
     try {
       const response = await fetch(apiUrl('/api/contact'), {
@@ -44,9 +60,11 @@ export default function ContactPage({ data, status }) {
           <h3>Let us work together</h3>
           <p>
             {status === 'error'
-              ? 'Content could not be loaded. The contact form still works if the API is running.'
-              : data.contact_blurb ||
-                'Open to partnerships in innovation policy, sustainable entrepreneurship, and international business.'}
+              ? 'Content could not be loaded. Please contact directly by email or phone.'
+              : status === 'snapshot'
+                ? 'The public portal is running in private-backend mode. Use this form to open your email app.'
+                : data.contact_blurb ||
+                  'Open to partnerships in innovation policy, sustainable entrepreneurship, and international business.'}
           </p>
           <div className="contact-details">
             <div>
@@ -109,10 +127,19 @@ export default function ContactPage({ data, status }) {
             />
           </label>
           <button className="button primary" type="submit" disabled={formStatus === 'sending'}>
-            {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
+            {formStatus === 'sending'
+              ? 'Sending...'
+              : apiFormEnabled
+                ? 'Send Message'
+                : 'Open Email App'}
           </button>
           {formStatus === 'success' && (
             <p className="form-status success">Thank you. Your message has been received.</p>
+          )}
+          {formStatus === 'mailto' && (
+            <p className="form-status success">
+              Email draft opened. Send it from your mail app to complete contact.
+            </p>
           )}
           {formStatus === 'error' && (
             <p className="form-status error">Unable to send. Please try again shortly.</p>

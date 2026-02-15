@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { apiUrl } from './api'
+import { apiUrl, hasBackendApi } from './api'
+
+const SNAPSHOT_PATH = '/published-content.json'
 
 export const emptyData = {
   profile: {
@@ -45,24 +47,52 @@ export function useProfileContent() {
 
   useEffect(() => {
     let isMounted = true
-    fetch(apiUrl('/api/content'))
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to load content')
+
+    const loadFromApi = async () => {
+      const response = await fetch(apiUrl('/api/content'))
+      if (!response.ok) {
+        throw new Error('Failed to load API content')
+      }
+      return response.json()
+    }
+
+    const loadFromSnapshot = async () => {
+      const response = await fetch(SNAPSHOT_PATH)
+      if (!response.ok) {
+        throw new Error('Failed to load snapshot content')
+      }
+      return response.json()
+    }
+
+    const loadContent = async () => {
+      if (hasBackendApi) {
+        try {
+          const payload = await loadFromApi()
+          if (isMounted) {
+            setData(payload)
+            setStatus('ready')
+          }
+          return
+        } catch (error) {
+          // Fall back to snapshot when backend is private/offline in production.
         }
-        return res.json()
-      })
-      .then((payload) => {
+      }
+
+      try {
+        const payload = await loadFromSnapshot()
         if (isMounted) {
           setData(payload)
-          setStatus('ready')
+          setStatus('snapshot')
         }
-      })
-      .catch(() => {
+      } catch (error) {
         if (isMounted) {
           setStatus('error')
         }
-      })
+      }
+    }
+
+    loadContent()
+
     return () => {
       isMounted = false
     }

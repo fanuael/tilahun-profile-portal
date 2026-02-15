@@ -6,7 +6,6 @@ import EducationPage from './pages/EducationPage'
 import ExperiencePage from './pages/ExperiencePage'
 import HomePage from './pages/HomePage'
 import IdeasPage from './pages/IdeasPage'
-import LibraryPage from './pages/LibraryPage'
 import NotFoundPage from './pages/NotFoundPage'
 import PublicationsPage from './pages/PublicationsPage'
 import ResearchPage from './pages/ResearchPage'
@@ -30,7 +29,6 @@ export default function App() {
           <Route path="/ideas" element={<IdeasPage data={data} />} />
           <Route path="/work" element={<WorkPage data={data} />} />
           <Route path="/research" element={<ResearchPage data={data} />} />
-          <Route path="/library" element={<LibraryPage data={data} />} />
           <Route path="/contact" element={<ContactPage data={data} status={status} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
