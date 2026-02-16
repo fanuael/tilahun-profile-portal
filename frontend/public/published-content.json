@@ -1,325 +1,349 @@
 {
-  "profile": {
-    "name": "Tilahun Alene Terfie",
-    "title": "Innovation and Sustainable Business Professional",
-    "location": "Addis Ababa, Ethiopia",
-    "email": "tilahunalenee@gmail.com",
-    "phone": "+251 941 883 746",
-    "nationality": "Ethiopian",
-    "current_focus": "Currently studying MBA in Sustainable International Business and Foreign Trade in India",
-    "hero_image_url": "/published-media/profile/images/3x4.JPG",
-    "cv_url": "",
-    "updated_at": "2026-02-15T14:16:15.435811+00:00"
-  },
-  "summary": "Senior innovation and sustainable business professional with 15+ years of leadership in public sector innovation systems, startup ecosystem coordination, and policy implementation. Experienced in national innovation programs, institutional collaboration, and strategic development initiatives. Internationally trained in innovation systems, sustainability, and civic engagement.",
-  "contact_blurb": "Open to partnerships in innovation policy, sustainable entrepreneurship, and international business.",
-  "stats": [
-    {
-      "label": "15+ years",
-      "value": "Leadership in public sector innovation"
-    },
-    {
-      "label": "National programs",
-      "value": "Startup and ecosystem coordination"
-    },
-    {
-      "label": "Global exposure",
-      "value": "China, United States, UK partnerships"
-    }
-  ],
-  "story": [
-    {
-      "year": "2013",
-      "title": "Teacher, Amhara Education Bureau",
-      "detail": "Started professional service as a teacher, delivering History and Social Science for primary and secondary students."
-    },
-    {
-      "year": "2014",
-      "title": "Education Curriculum Coordinator",
-      "detail": "Joined Addis Ababa Education Office and coordinated curriculum execution, educator collaboration, and community library support initiatives."
-    },
-    {
-      "year": "2016",
-      "title": "Team Leader, Ministry of Innovation and Technology",
-      "detail": "Led Councils and Regions Coordination efforts, supporting regional science, technology, and innovation institution development across Ethiopia."
-    },
-    {
-      "year": "2021",
-      "title": "Project Manager",
-      "detail": "Managed ICT and e-government project delivery, contributing to online service enablement across 300+ government institutions."
-    },
-    {
-      "year": "2022",
-      "title": "Senior Expert, Startup and Innovative Enterprise Development",
-      "detail": "Currently supports startup and innovative enterprise development through training, mentorship, networking, and acceleration support."
-    },
-    {
-      "year": "Present",
-      "title": "MBA Studies in India",
-      "detail": "Currently studying MBA in Sustainable International Business and Foreign Trade in India."
-    }
-  ],
-  "experience": [
-    {
-      "role": "Education Curriculum Coordinator",
-      "organization": "Addis Ababa Education Office",
-      "period": "2014 - 2016",
-      "location": "",
-      "description": "",
-      "highlights": []
-    },
-    {
-      "role": "Team Leader, Councils and Regions Coordination Directorate",
-      "organization": "Ministry of Innovation and Technology",
-      "period": "2016 - 2021",
-      "location": "",
-      "description": "",
-      "highlights": []
-    },
-    {
-      "role": "Project Manager",
-      "organization": "Ministry of Innovation and Technology",
-      "period": "Oct 2021 - May 2022",
-      "location": "",
-      "description": "",
-      "highlights": []
-    },
-    {
-      "role": "Senior Expert, Startup and Innovative Enterprise Development Desk",
-      "organization": "Ministry of Innovation and Technology",
-      "period": "May 2022 - Now",
-      "location": "",
-      "description": "Currently, I have been working as a Senior Expert, Startup and Innovative Enterprise Development. I provide training, mentorship, networking opportunities, and acceleration support for innovative and tech-based startups.",
-      "highlights": [
-        "Currently, I have been working as a Senior Expert, Startup and Innovative Enterprise Development. I provide training, mentorship, networking opportunities, and acceleration support for innovative and tech-based startups."
-      ]
-    }
-  ],
-  "education": [
-    {
-      "degree": "MBA (Ongoing)",
-      "field": "Sustainable International Business and Foreign Trade",
-      "institution": "India",
-      "year": "Ongoing"
-    },
-    {
-      "degree": "MA",
-      "field": "Public Policy Studies",
-      "institution": "Ethiopian Civil Service University",
-      "year": "2021"
-    },
-    {
-      "degree": "BA",
-      "field": "Management",
-      "institution": "Bahir Dar University",
-      "year": "2022"
-    },
-    {
-      "degree": "BA",
-      "field": "Economics",
-      "institution": "Arsi University",
-      "year": "2021"
-    },
-    {
-      "degree": "BA Degree",
-      "field": "History and Heritage Management",
-      "institution": "Debre Markos University",
-      "year": "October, 08/2013"
-    }
-  ],
-  "programs": [
-    {
-      "title": "Scientific and Technological Innovation for BRI Countries - Ministry of Commerce, China (2024)",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "African Civic Engagement Academy - University of Georgia and U.S. Department of State (2022)",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Creative Economy Program - British Council (2022-2023)",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Understanding Sustainability Basics - Florida University Southeast (2024)",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Innovation Leadership and Design Thinking",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Entrepreneurship and Startup Ecosystem Development (UNDP)",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "ISO 9001:2015 Quality Management Systems",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Project Preparation and Appraisal",
-      "organization": "",
-      "period": ""
-    },
-    {
-      "title": "Workforce Collaboration and Development",
-      "organization": "",
-      "period": ""
-    }
-  ],
-  "competencies": [
-    "Innovation ecosystem development",
-    "Startup incubation and acceleration support",
-    "Sustainable international business strategy",
-    "Foreign trade and market systems",
-    "Public policy analysis and implementation",
-    "Project and program management",
-    "Institutional coordination",
-    "Strategic planning and leadership",
-    "Cross-cultural collaboration"
-  ],
-  "technical": [
-    "Python",
-    "Django (fundamental level)",
-    "React (frontend basics)",
-    "MySQL concepts",
-    "AI-assisted digital portal development tools"
-  ],
-  "languages": [
-    "Amharic (native)",
-    "English (professional proficiency)"
-  ],
-  "interests": [
-    "Sustainable entrepreneurship",
-    "Innovation-led economic transformation",
-    "International trade development",
-    "Startup ecosystem strengthening",
-    "Technology-enabled public sector reform"
-  ],
-  "publications": [
-    {
-      "title": "Innovation and Sustainable Entrepreneurship in Emerging Economies",
-      "year": "In progress",
-      "type": "Research article",
-      "status": "Draft",
-      "summary": "Explores policy and ecosystem levers that accelerate sustainable entrepreneurship in developing markets.",
-      "url": "",
-      "document_url": "",
-      "image_url": ""
-    },
-    {
-      "title": "Regional Innovation Governance Models in Ethiopia",
-      "year": "In progress",
-      "type": "Policy brief",
-      "status": "Concept",
-      "summary": "Compares governance approaches across regions to identify scalable coordination mechanisms.",
-      "url": "",
-      "document_url": "",
-      "image_url": ""
-    }
-  ],
-  "ideas": [
-    {
-      "title": "Green Export Acceleration Hub",
-      "stage": "Pilot concept",
-      "summary": "A multi-stakeholder platform that helps sustainable SMEs meet export compliance, certification, and logistics requirements.",
-      "impact": "Improves foreign exchange earnings while strengthening green supply chains.",
-      "url": "",
-      "document_url": "",
-      "image_url": ""
-    },
-    {
-      "title": "Innovation Policy Observatory",
-      "stage": "Design",
-      "summary": "A data-driven observatory tracking innovation performance indicators across regions to inform national policy.",
-      "impact": "Enables evidence-based policy design and investment prioritization.",
-      "url": "",
-      "document_url": "",
-      "image_url": ""
-    },
-    {
-      "title": "Startup Readiness Fellowship",
-      "stage": "Prototype",
-      "summary": "A capacity-building program for early-stage founders focused on market discovery, compliance, and investment readiness.",
-      "impact": "Improves survival and growth rates of technology-based startups.",
-      "url": "",
-      "document_url": "",
-      "image_url": ""
-    }
-  ],
-  "media": {
-    "all": [
-      {
-        "id": 3,
-        "title": "Tilahun Profile Photo",
-        "caption": "Official profile photo",
-        "asset_type": "image",
-        "section": "home",
-        "file_url": "/published-media/assets/Tilahun_Profile_Photo.JPG"
-      },
-      {
-        "id": 2,
-        "title": "Tilahun Udacity Certificate",
-        "caption": "Udacity learning certificate document.",
-        "asset_type": "document",
-        "section": "library",
-        "file_url": "/published-media/assets/Tilahun_Udacity.pdf"
-      }
-    ],
-    "images": [
-      {
-        "id": 3,
-        "title": "Tilahun Profile Photo",
-        "caption": "Official profile photo",
-        "asset_type": "image",
-        "section": "home",
-        "file_url": "/published-media/assets/Tilahun_Profile_Photo.JPG"
-      }
-    ],
-    "documents": [
-      {
-        "id": 2,
-        "title": "Tilahun Udacity Certificate",
-        "caption": "Udacity learning certificate document.",
-        "asset_type": "document",
-        "section": "library",
-        "file_url": "/published-media/assets/Tilahun_Udacity.pdf"
-      }
-    ],
-    "home": [
-      {
-        "id": 3,
-        "title": "Tilahun Profile Photo",
-        "caption": "Official profile photo",
-        "asset_type": "image",
-        "section": "home",
-        "file_url": "/published-media/assets/Tilahun_Profile_Photo.JPG"
-      }
-    ],
-    "story": [],
-    "work": [],
-    "research": [],
-    "library": [
-      {
-        "id": 2,
-        "title": "Tilahun Udacity Certificate",
-        "caption": "Udacity learning certificate document.",
-        "asset_type": "document",
-        "section": "library",
-        "file_url": "/published-media/assets/Tilahun_Udacity.pdf"
-      }
-    ],
-    "general": []
-  },
-  "meta": {
-    "generated_at": "2026-02-15T17:30:06.434812+00:00",
-    "source": "django-admin-export"
-  }
+    "profile":  {
+                    "name":  "Tilahun Alene Terfie",
+                    "title":  "Innovation and Sustainable Business Professional",
+                    "location":  "Addis Ababa, Ethiopia",
+                    "email":  "tilahunalenee@gmail.com",
+                    "phone":  "+251 941 883 746",
+                    "nationality":  "Ethiopian",
+                    "current_focus":  "Currently studying MBA in Sustainable International Business and Foreign Trade in India",
+                    "hero_image_url":  "/published-media/profile/images/3x4.JPG",
+                    "cv_url":  "",
+                    "updated_at":  "2026-02-15T14:16:15.435811+00:00"
+                },
+    "summary":  "Senior innovation and sustainable business professional with 15+ years of leadership in public sector innovation systems, startup ecosystem coordination, and policy implementation. Experienced in national innovation programs, institutional collaboration, and strategic development initiatives. Internationally trained in innovation systems, sustainability, and civic engagement.",
+    "contact_blurb":  "Open to partnerships in innovation policy, sustainable entrepreneurship, and international business.",
+    "stats":  [
+                  {
+                      "label":  "15+ years",
+                      "value":  "Leadership in public sector innovation"
+                  },
+                  {
+                      "label":  "National programs",
+                      "value":  "Startup and ecosystem coordination"
+                  },
+                  {
+                      "label":  "Global exposure",
+                      "value":  "China, United States, UK partnerships"
+                  }
+              ],
+    "story":  [
+                  {
+                      "year":  "2013",
+                      "title":  "Teacher, Amhara Education Bureau",
+                      "detail":  "Started professional service as a teacher, delivering History and Social Science for primary and secondary students."
+                  },
+                  {
+                      "year":  "2014",
+                      "title":  "Education Curriculum Coordinator",
+                      "detail":  "Joined Addis Ababa Education Office and coordinated curriculum execution, educator collaboration, and community library support initiatives."
+                  },
+                  {
+                      "year":  "2016",
+                      "title":  "Team Leader, Ministry of Innovation and Technology",
+                      "detail":  "Led Councils and Regions Coordination efforts, supporting regional science, technology, and innovation institution development across Ethiopia."
+                  },
+                  {
+                      "year":  "2021",
+                      "title":  "Project Manager",
+                      "detail":  "Managed ICT and e-government project delivery, contributing to online service enablement across 300+ government institutions."
+                  },
+                  {
+                      "year":  "2022",
+                      "title":  "Senior Expert, Startup and Innovative Enterprise Development",
+                      "detail":  "Currently supports startup and innovative enterprise development through training, mentorship, networking, and acceleration support."
+                  },
+                  {
+                      "year":  "Present",
+                      "title":  "MBA Studies in India",
+                      "detail":  "Currently studying MBA in Sustainable International Business and Foreign Trade in India."
+                  }
+              ],
+    "experience":  [
+                       {
+                           "role":  "Education Curriculum Coordinator",
+                           "organization":  "Addis Ababa Education Office",
+                           "period":  "2014 - 2016",
+                           "location":  "",
+                           "description":  "",
+                           "highlights":  [
+
+                                          ]
+                       },
+                       {
+                           "role":  "Team Leader, Councils and Regions Coordination Directorate",
+                           "organization":  "Ministry of Innovation and Technology",
+                           "period":  "2016 - 2021",
+                           "location":  "",
+                           "description":  "",
+                           "highlights":  [
+
+                                          ]
+                       },
+                       {
+                           "role":  "Project Manager",
+                           "organization":  "Ministry of Innovation and Technology",
+                           "period":  "Oct 2021 - May 2022",
+                           "location":  "",
+                           "description":  "",
+                           "highlights":  [
+
+                                          ]
+                       },
+                       {
+                           "role":  "Senior Expert, Startup and Innovative Enterprise Development Desk",
+                           "organization":  "Ministry of Innovation and Technology",
+                           "period":  "May 2022 - Now",
+                           "location":  "",
+                           "description":  "Currently, I have been working as a Senior Expert, Startup and Innovative Enterprise Development. I provide training, mentorship, networking opportunities, and acceleration support for innovative and tech-based startups.",
+                           "highlights":  [
+                                              "Currently, I have been working as a Senior Expert, Startup and Innovative Enterprise Development. I provide training, mentorship, networking opportunities, and acceleration support for innovative and tech-based startups."
+                                          ]
+                       }
+                   ],
+    "education":  [
+                      {
+                          "degree":  "MBA (Ongoing)",
+                          "field":  "Sustainable International Business and Foreign Trade",
+                          "institution":  "India",
+                          "year":  "Ongoing"
+                      },
+                      {
+                          "degree":  "MA",
+                          "field":  "Public Policy Studies",
+                          "institution":  "Ethiopian Civil Service University",
+                          "year":  "2021"
+                      },
+                      {
+                          "degree":  "BA",
+                          "field":  "Management",
+                          "institution":  "Bahir Dar University",
+                          "year":  "2022"
+                      },
+                      {
+                          "degree":  "BA",
+                          "field":  "Economics",
+                          "institution":  "Arsi University",
+                          "year":  "2021"
+                      },
+                      {
+                          "degree":  "BA Degree",
+                          "field":  "History and Heritage Management",
+                          "institution":  "Debre Markos University",
+                          "year":  "October, 08/2013"
+                      }
+                  ],
+    "programs":  [
+                     {
+                         "title":  "Scientific and Technological Innovation for BRI Countries - Ministry of Commerce, China (2024)",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "African Civic Engagement Academy - University of Georgia and U.S. Department of State (2022)",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Creative Economy Program - British Council (2022-2023)",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Understanding Sustainability Basics - Florida University Southeast (2024)",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Innovation Leadership and Design Thinking",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Entrepreneurship and Startup Ecosystem Development (UNDP)",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "ISO 9001:2015 Quality Management Systems",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Project Preparation and Appraisal",
+                         "organization":  "",
+                         "period":  ""
+                     },
+                     {
+                         "title":  "Workforce Collaboration and Development",
+                         "organization":  "",
+                         "period":  ""
+                     }
+                 ],
+    "competencies":  [
+                         "Innovation ecosystem development",
+                         "Startup incubation and acceleration support",
+                         "Sustainable international business strategy",
+                         "Foreign trade and market systems",
+                         "Public policy analysis and implementation",
+                         "Project and program management",
+                         "Institutional coordination",
+                         "Strategic planning and leadership",
+                         "Cross-cultural collaboration"
+                     ],
+    "technical":  [
+                      "Python",
+                      "Django (fundamental level)",
+                      "React (frontend basics)",
+                      "MySQL concepts",
+                      "AI-assisted digital portal development tools"
+                  ],
+    "languages":  [
+                      "Amharic (native)",
+                      "English (professional proficiency)"
+                  ],
+    "interests":  [
+                      "Sustainable entrepreneurship",
+                      "Innovation-led economic transformation",
+                      "International trade development",
+                      "Startup ecosystem strengthening",
+                      "Technology-enabled public sector reform"
+                  ],
+    "publications":  [
+                         {
+                             "title":  "Innovation and Sustainable Entrepreneurship in Emerging Economies",
+                             "year":  "In progress",
+                             "type":  "Research article",
+                             "status":  "Draft",
+                             "summary":  "Explores policy and ecosystem levers that accelerate sustainable entrepreneurship in developing markets.",
+                             "url":  "",
+                             "document_url":  "",
+                             "image_url":  ""
+                         },
+                         {
+                             "title":  "Regional Innovation Governance Models in Ethiopia",
+                             "year":  "In progress",
+                             "type":  "Policy brief",
+                             "status":  "Concept",
+                             "summary":  "Compares governance approaches across regions to identify scalable coordination mechanisms.",
+                             "url":  "",
+                             "document_url":  "",
+                             "image_url":  ""
+                         }
+                     ],
+    "ideas":  [
+                  {
+                      "title":  "Green Export Acceleration Hub",
+                      "stage":  "Pilot concept",
+                      "summary":  "A multi-stakeholder platform that helps sustainable SMEs meet export compliance, certification, and logistics requirements.",
+                      "impact":  "Improves foreign exchange earnings while strengthening green supply chains.",
+                      "url":  "",
+                      "document_url":  "",
+                      "image_url":  ""
+                  },
+                  {
+                      "title":  "Innovation Policy Observatory",
+                      "stage":  "Design",
+                      "summary":  "A data-driven observatory tracking innovation performance indicators across regions to inform national policy.",
+                      "impact":  "Enables evidence-based policy design and investment prioritization.",
+                      "url":  "",
+                      "document_url":  "",
+                      "image_url":  ""
+                  },
+                  {
+                      "title":  "Startup Readiness Fellowship",
+                      "stage":  "Prototype",
+                      "summary":  "A capacity-building program for early-stage founders focused on market discovery, compliance, and investment readiness.",
+                      "impact":  "Improves survival and growth rates of technology-based startups.",
+                      "url":  "",
+                      "document_url":  "",
+                      "image_url":  ""
+                  }
+              ],
+    "media":  {
+                  "all":  [
+                              {
+                                  "id":  3,
+                                  "title":  "Tilahun Profile Photo",
+                                  "caption":  "Official profile photo",
+                                  "asset_type":  "image",
+                                  "section":  "home",
+                                  "file_url":  "/published-media/assets/Tilahun_Profile_Photo.JPG"
+                              },
+                              {
+                                  "id":  2,
+                                  "title":  "Tilahun Udacity Certificate",
+                                  "caption":  "Udacity learning certificate document.",
+                                  "asset_type":  "document",
+                                  "section":  "library",
+                                  "file_url":  "/published-media/assets/Tilahun_Udacity.pdf"
+                              }
+                          ],
+                  "images":  [
+                                 {
+                                     "id":  3,
+                                     "title":  "Tilahun Profile Photo",
+                                     "caption":  "Official profile photo",
+                                     "asset_type":  "image",
+                                     "section":  "home",
+                                     "file_url":  "/published-media/assets/Tilahun_Profile_Photo.JPG"
+                                 }
+                             ],
+                  "documents":  [
+                                    {
+                                        "id":  2,
+                                        "title":  "Tilahun Udacity Certificate",
+                                        "caption":  "Udacity learning certificate document.",
+                                        "asset_type":  "document",
+                                        "section":  "library",
+                                        "file_url":  "/published-media/assets/Tilahun_Udacity.pdf"
+                                    }
+                                ],
+                  "home":  [
+                               {
+                                   "id":  3,
+                                   "title":  "Tilahun Profile Photo",
+                                   "caption":  "Official profile photo",
+                                   "asset_type":  "image",
+                                   "section":  "home",
+                                   "file_url":  "/published-media/assets/Tilahun_Profile_Photo.JPG"
+                               }
+                           ],
+                  "story":  [
+
+                            ],
+                  "work":  [
+
+                           ],
+                  "research":  [
+
+                               ],
+                  "library":  [
+                                  {
+                                      "id":  2,
+                                      "title":  "Tilahun Udacity Certificate",
+                                      "caption":  "Udacity learning certificate document.",
+                                      "asset_type":  "document",
+                                      "section":  "library",
+                                      "file_url":  "/published-media/assets/Tilahun_Udacity.pdf"
+                                  }
+                              ],
+                  "general":  [
+
+                              ]
+              },
+    "meta":  {
+                 "generated_at":  "2026-02-15T17:30:06.434812+00:00",
+                 "source":  "django-admin-export"
+             },
+    "resume_text":  "TILAHUN ALENE TERFIE\n\nAddis Ababa, Ethiopia\nEmail: tilahunalenee@gmail.com | Phone: +251 941 883 746\n\nPROFESSIONAL PROFILE\n\nStrategic Innovation and Public Policy Expert with over 15 years of progressive leadership experience in education reform, national innovation systems development, startup ecosystem support, and digital government transformation. Currently serving as Senior Expert in Startup and Innovative Enterprise Development at the Ministry of Innovation and Technology, Ethiopia.\n\nDemonstrated expertise in designing and implementing national innovation frameworks, leading multi-sector coordination initiatives, managing large-scale ICT and e-government projects, and mentoring technology-based startups. Strong academic foundation with multiple degrees in History, Economics, Management, and Public Policy Studies.\n\nRecognized for strategic leadership, institutional capacity building, and driving systemic transformation across public institutions.\n\nCORE COMPETENCIES\n\nStartup Ecosystem Development\nInnovation Policy and System Design\nE-Government and Digital Transformation\nStrategic Leadership and Team Management\nPublic Sector Reform\nProject and Program Management\nCurriculum Development and Education Reform\nStakeholder Engagement and Intergovernmental Coordination\nMentorship and Capacity Building\nProblem-Solving and Analytical Thinking\n\nPROFESSIONAL EXPERIENCE\n\nSenior Expert - Startup and Innovative Enterprise Development\nMinistry of Innovation and Technology (May 2022 - Present)\n\nProvide structured training, mentorship, and acceleration support to technology-based startups.\nDesign and implement national startup support mechanisms.\nFacilitate networking opportunities between startups, investors, and ecosystem actors.\nSupport innovation-driven enterprises in scaling sustainable business models.\nContribute to strengthening Ethiopia\u0027s national innovation ecosystem.\n\nProject Manager - ICT and E-Government Initiatives\nMinistry of Innovation and Technology (Oct 2021 - May 2022)\n\nLed national-level ICT projects with a multidisciplinary technical team.\nManaged implementation of e-government (e-service) systems.\nEnabled more than 300 government institutions to provide online services.\nStrengthened institutional digital service delivery frameworks.\nCoordinated cross-sector stakeholders to ensure project success.\n\nTeam Leader - Councils and Regions Coordination Directorate\nMinistry of Innovation and Technology (2016 - 2021)\n\nLed a five-member core team coordinating establishment of national innovation systems across regional states.\nSuccessfully facilitated the establishment of Science, Technology, and Innovation institutions in all regions of Ethiopia.\nDelivered training, workshops, and policy advisory services to regional governments.\nEngaged high-level regional leaders to institutionalize innovation governance frameworks.\n\nEducation Curriculum Coordinator\nAddis Ababa Education Office (2014 - 2016)\n\nLed coordination of local curriculum implementation across schools.\nSupervised 150+ education experts, teachers, and administrators.\nCollaborated with international development partners.\nLaunched community libraries to enhance student learning access.\nReceived certificates of recognition for contributions.\n\nTeacher - History and Social Sciences\nAmhara Education Bureau (2013 - 2014)\n\nTaught primary and secondary school students.\nDeveloped engaging instructional methods.\nContributed to curriculum enhancement initiatives.\n\nEDUCATION\n\nMA in Public Policy Studies\nEthiopian Civil Service University (2021)\n\nBA in Management\nBahir Dar University (2022)\n\nBA in Economics\nArsi University (2021)\n\nBA in History and Heritage Management\nDebre Markos University (2013)\n\nLANGUAGES\n\nAmharic - Fluent\nEnglish - Advanced\n\nTECHNICAL AND ADDITIONAL SKILLS\n\nStrategic Planning and Policy Analysis\nICT Project Oversight\nStartup Mentorship and Acceleration\nPublic Sector Innovation Design\nBasic Full-Stack Development Skills\nLeadership and Institutional Capacity Building\n\nPROFESSIONAL REFERENCES\nAvailable upon request.",
+    "passion_text":  "I am deeply passionate about startup and innovation-driven enterprise development as a transformative force for economic growth and societal progress. My professional journey has strengthened my commitment to building ecosystems where ideas evolve into sustainable ventures and entrepreneurs are empowered to create meaningful impact.\n\nI am particularly driven by the process of creating, designing, and innovating new solutions - not only within existing systems but by reimagining how businesses can operate, scale, and contribute to national development. I believe startups are not merely small businesses; they are engines of structural transformation.\n\nMy focus extends beyond institutional support - I am committed to mentoring emerging entrepreneurs, guiding business owners in strategic thinking, helping them refine business models, and enabling them to transition from survival-driven enterprises to innovation-driven organizations.\n\nI aspire to contribute to the development of inclusive and sustainable innovation ecosystems where creativity, technology, and policy intersect to generate long-term value.",
+    "resume":  {
+                   "title":  "Resume",
+                   "content":  "TILAHUN ALENE TERFIE\n\nAddis Ababa, Ethiopia\nEmail: tilahunalenee@gmail.com | Phone: +251 941 883 746\n\nPROFESSIONAL PROFILE\n\nStrategic Innovation and Public Policy Expert with over 15 years of progressive leadership experience in education reform, national innovation systems development, startup ecosystem support, and digital government transformation. Currently serving as Senior Expert in Startup and Innovative Enterprise Development at the Ministry of Innovation and Technology, Ethiopia.\n\nDemonstrated expertise in designing and implementing national innovation frameworks, leading multi-sector coordination initiatives, managing large-scale ICT and e-government projects, and mentoring technology-based startups. Strong academic foundation with multiple degrees in History, Economics, Management, and Public Policy Studies.\n\nRecognized for strategic leadership, institutional capacity building, and driving systemic transformation across public institutions.\n\nCORE COMPETENCIES\n\nStartup Ecosystem Development\nInnovation Policy and System Design\nE-Government and Digital Transformation\nStrategic Leadership and Team Management\nPublic Sector Reform\nProject and Program Management\nCurriculum Development and Education Reform\nStakeholder Engagement and Intergovernmental Coordination\nMentorship and Capacity Building\nProblem-Solving and Analytical Thinking\n\nPROFESSIONAL EXPERIENCE\n\nSenior Expert - Startup and Innovative Enterprise Development\nMinistry of Innovation and Technology (May 2022 - Present)\n\nProvide structured training, mentorship, and acceleration support to technology-based startups.\nDesign and implement national startup support mechanisms.\nFacilitate networking opportunities between startups, investors, and ecosystem actors.\nSupport innovation-driven enterprises in scaling sustainable business models.\nContribute to strengthening Ethiopia\u0027s national innovation ecosystem.\n\nProject Manager - ICT and E-Government Initiatives\nMinistry of Innovation and Technology (Oct 2021 - May 2022)\n\nLed national-level ICT projects with a multidisciplinary technical team.\nManaged implementation of e-government (e-service) systems.\nEnabled more than 300 government institutions to provide online services.\nStrengthened institutional digital service delivery frameworks.\nCoordinated cross-sector stakeholders to ensure project success.\n\nTeam Leader - Councils and Regions Coordination Directorate\nMinistry of Innovation and Technology (2016 - 2021)\n\nLed a five-member core team coordinating establishment of national innovation systems across regional states.\nSuccessfully facilitated the establishment of Science, Technology, and Innovation institutions in all regions of Ethiopia.\nDelivered training, workshops, and policy advisory services to regional governments.\nEngaged high-level regional leaders to institutionalize innovation governance frameworks.\n\nEducation Curriculum Coordinator\nAddis Ababa Education Office (2014 - 2016)\n\nLed coordination of local curriculum implementation across schools.\nSupervised 150+ education experts, teachers, and administrators.\nCollaborated with international development partners.\nLaunched community libraries to enhance student learning access.\nReceived certificates of recognition for contributions.\n\nTeacher - History and Social Sciences\nAmhara Education Bureau (2013 - 2014)\n\nTaught primary and secondary school students.\nDeveloped engaging instructional methods.\nContributed to curriculum enhancement initiatives.\n\nEDUCATION\n\nMA in Public Policy Studies\nEthiopian Civil Service University (2021)\n\nBA in Management\nBahir Dar University (2022)\n\nBA in Economics\nArsi University (2021)\n\nBA in History and Heritage Management\nDebre Markos University (2013)\n\nLANGUAGES\n\nAmharic - Fluent\nEnglish - Advanced\n\nTECHNICAL AND ADDITIONAL SKILLS\n\nStrategic Planning and Policy Analysis\nICT Project Oversight\nStartup Mentorship and Acceleration\nPublic Sector Innovation Design\nBasic Full-Stack Development Skills\nLeadership and Institutional Capacity Building\n\nPROFESSIONAL REFERENCES\nAvailable upon request."
+               },
+    "passion":  {
+                    "title":  "Passion",
+                    "content":  "I am deeply passionate about startup and innovation-driven enterprise development as a transformative force for economic growth and societal progress. My professional journey has strengthened my commitment to building ecosystems where ideas evolve into sustainable ventures and entrepreneurs are empowered to create meaningful impact.\n\nI am particularly driven by the process of creating, designing, and innovating new solutions - not only within existing systems but by reimagining how businesses can operate, scale, and contribute to national development. I believe startups are not merely small businesses; they are engines of structural transformation.\n\nMy focus extends beyond institutional support - I am committed to mentoring emerging entrepreneurs, guiding business owners in strategic thinking, helping them refine business models, and enabling them to transition from survival-driven enterprises to innovation-driven organizations.\n\nI aspire to contribute to the development of inclusive and sustainable innovation ecosystems where creativity, technology, and policy intersect to generate long-term value."
+                }
 }
