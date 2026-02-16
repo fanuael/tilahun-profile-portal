@@ -1,21 +1,35 @@
-import { useEffect, useState } from 'react'
-import { apiUrl, hasBackendApi } from './api'
-
-const SNAPSHOT_PATH = '/published-content.json'
+import { useCallback, useEffect, useState } from 'react'
+import { apiUrl } from './api'
 
 export const emptyData = {
   profile: {
-    name: 'Tilahun Alene Terfie',
-    title: 'Innovation and Sustainable Business Professional',
-    location: 'Addis Ababa, Ethiopia',
-    email: 'tilahunalenee@gmail.com',
-    phone: '+251 941 883 746',
-    nationality: 'Ethiopian',
-    current_focus: 'MBA in Sustainable International Business and Foreign Trade',
+    name: 'Profile',
+    title: '',
+    location: '',
+    email: '',
+    phone: '',
+    nationality: '',
+    current_focus: '',
     hero_image_url: '',
     cv_url: ''
   },
   summary: '',
+  resume_text: '',
+  passion_text: '',
+  resume: {
+    title: '',
+    content: ''
+  },
+  passion: {
+    title: '',
+    content: ''
+  },
+  blogs: {
+    all: [],
+    news: [],
+    articles: [],
+    insights: []
+  },
   contact_blurb: '',
   stats: [],
   story: [],
@@ -44,59 +58,81 @@ export const emptyData = {
 export function useProfileContent() {
   const [data, setData] = useState(emptyData)
   const [status, setStatus] = useState('loading')
+  const [error, setError] = useState(null)
 
-  useEffect(() => {
-    let isMounted = true
+  const loadContent = useCallback(async ({ signal, silent = false } = {}) => {
+    if (!silent) {
+      setStatus('loading')
+    }
+    setError(null)
 
-    const loadFromApi = async () => {
-      const response = await fetch(apiUrl('/api/content'))
-      if (!response.ok) {
-        throw new Error('Failed to load API content')
-      }
-      return response.json()
+    const response = await fetch(apiUrl('/api/content'), {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      },
+      cache: 'no-store',
+      signal
+    })
+
+    if (!response.ok) {
+      throw new Error(`Content API request failed (${response.status})`)
     }
 
-    const loadFromSnapshot = async () => {
-      const response = await fetch(SNAPSHOT_PATH)
-      if (!response.ok) {
-        throw new Error('Failed to load snapshot content')
-      }
-      return response.json()
-    }
-
-    const loadContent = async () => {
-      if (hasBackendApi) {
-        try {
-          const payload = await loadFromApi()
-          if (isMounted) {
-            setData(payload)
-            setStatus('ready')
-          }
-          return
-        } catch (error) {
-          // Fall back to snapshot when backend is private/offline in production.
-        }
-      }
-
-      try {
-        const payload = await loadFromSnapshot()
-        if (isMounted) {
-          setData(payload)
-          setStatus('snapshot')
-        }
-      } catch (error) {
-        if (isMounted) {
-          setStatus('error')
-        }
+    const payload = await response.json()
+    const normalized = {
+      ...emptyData,
+      ...payload,
+      profile: {
+        ...emptyData.profile,
+        ...(payload.profile || {})
+      },
+      media: {
+        ...emptyData.media,
+        ...(payload.media || {})
       }
     }
-
-    loadContent()
-
-    return () => {
-      isMounted = false
-    }
+    setData(normalized)
+    setStatus('ready')
   }, [])
 
-  return { data, status }
+  const handleLoadError = useCallback((loadError) => {
+    if (loadError.name === 'AbortError') {
+      return
+    }
+    setStatus('error')
+    setError(loadError.message || 'Unable to load live content from backend.')
+  }, [])
+
+  const refresh = useCallback(async () => {
+    try {
+      await loadContent()
+    } catch (loadError) {
+      handleLoadError(loadError)
+    }
+  }, [handleLoadError, loadContent])
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    loadContent({ signal: controller.signal }).catch(handleLoadError)
+
+    return () => {
+      controller.abort()
+    }
+  }, [handleLoadError, loadContent])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState !== 'visible') {
+        return
+      }
+      loadContent({ silent: true }).catch(handleLoadError)
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [handleLoadError, loadContent])
+
+  return { data, status, error, refresh }
 }

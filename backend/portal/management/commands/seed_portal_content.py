@@ -4,14 +4,18 @@ from pathlib import Path
 from django.core.management.base import BaseCommand
 
 from portal.models import (
+    BlogItem,
+    DEFAULT_PASSION_TEXT,
+    DEFAULT_RESUME_TEXT,
     EducationItem,
-    ExperienceHighlight,
     ExperienceItem,
     HighlightStat,
     IdeaItem,
     MediaAsset,
+    PassionContent,
     ProgramItem,
     PublicationItem,
+    ResumeContent,
     SiteProfile,
     SkillItem,
     StoryItem,
@@ -38,7 +42,9 @@ class Command(BaseCommand):
             payload = json.load(file)
 
         if options["reset"]:
-            ExperienceHighlight.objects.all().delete()
+            BlogItem.objects.all().delete()
+            ResumeContent.objects.all().delete()
+            PassionContent.objects.all().delete()
             ExperienceItem.objects.all().delete()
             StoryItem.objects.all().delete()
             EducationItem.objects.all().delete()
@@ -63,10 +69,22 @@ class Command(BaseCommand):
         profile.nationality = profile_data.get("nationality", "")
         profile.current_focus = profile_data.get("current_focus", "")
         profile.summary = payload.get("summary", "")
+        profile.resume_text = payload.get("resume_text", profile_data.get("resume_text", DEFAULT_RESUME_TEXT))
+        profile.passion_text = payload.get("passion_text", profile_data.get("passion_text", DEFAULT_PASSION_TEXT))
         profile.collaboration_blurb = (
             "Open to partnerships in innovation policy, sustainable entrepreneurship, and international business."
         )
         profile.save()
+
+        if options["reset"]:
+            ResumeContent.objects.create(
+                title="Resume",
+                content=profile.resume_text or DEFAULT_RESUME_TEXT,
+            )
+            PassionContent.objects.create(
+                title="Passion",
+                content=profile.passion_text or DEFAULT_PASSION_TEXT,
+            )
 
         if options["reset"]:
             default_stats = [
@@ -93,20 +111,15 @@ class Command(BaseCommand):
                 )
 
             for idx, item in enumerate(payload.get("experience", [])):
-                experience = ExperienceItem.objects.create(
+                ExperienceItem.objects.create(
                     role=item.get("role", ""),
                     organization=item.get("organization", ""),
                     period=item.get("period", ""),
-                    description="",
+                    location=item.get("location", ""),
+                    description=item.get("description", ""),
                     sort_order=idx,
                     is_published=True,
                 )
-                for jdx, highlight in enumerate(item.get("highlights", [])):
-                    ExperienceHighlight.objects.create(
-                        experience=experience,
-                        text=highlight,
-                        sort_order=jdx,
-                    )
 
             for idx, item in enumerate(payload.get("education", [])):
                 EducationItem.objects.create(
@@ -170,5 +183,20 @@ class Command(BaseCommand):
                     sort_order=idx,
                     is_published=True,
                 )
+
+            blog_groups = payload.get("blogs", {})
+            blog_index = 0
+            for category in ("news", "articles", "insights"):
+                for item in blog_groups.get(category, []):
+                    BlogItem.objects.create(
+                        category=category,
+                        title=item.get("title", ""),
+                        summary=item.get("summary", ""),
+                        content=item.get("content", ""),
+                        external_url=item.get("url", ""),
+                        sort_order=blog_index,
+                        is_published=True,
+                    )
+                    blog_index += 1
 
         self.stdout.write(self.style.SUCCESS("Portal content seeding completed."))

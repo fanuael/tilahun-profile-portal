@@ -1,0 +1,490 @@
+[
+    {
+        "model":  "portal.siteprofile",
+        "pk":  1,
+        "fields":  {
+                       "name":  "Tilahun Alene Terfie",
+                       "title":  "Innovation \u0026 Sustainable Business Professional",
+                       "location":  "Addis Ababa, Ethiopia",
+                       "email":  "tilahunalenee@gmail.com",
+                       "phone":  "+251 941 883 746",
+                       "nationality":  "Ethiopian",
+                       "current_focus":  "MBA in Sustainable International Business \u0026 Foreign Trade",
+                       "summary":  "Senior innovation and sustainable business professional with 15+ years of leadership experience in public sector innovation systems, startup ecosystem coordination, and policy implementation. Internationally trained in innovation systems, sustainability, and civic engagement with proven expertise in institutional collaboration and strategic development initiatives.",
+                       "collaboration_blurb":  "I am passionate about driving innovation-led economic transformation and building sustainable international business ecosystems. I collaborate with diverse stakeholders to design sustainable solutions to complex development challenges.",
+                       "updated_at":  "2025-02-16T00:00:00Z"
+                   }
+    },
+    {
+        "model":  "portal.highlightstat",
+        "pk":  1,
+        "fields":  {
+                       "label":  "Years of Leadership",
+                       "value":  "15+",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.highlightstat",
+        "pk":  2,
+        "fields":  {
+                       "label":  "Organizations Led",
+                       "value":  "3+",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.highlightstat",
+        "pk":  3,
+        "fields":  {
+                       "label":  "International Programs",
+                       "value":  "5+",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  1,
+        "fields":  {
+                       "year":  "2013",
+                       "title":  "Education Policy \u0026 Curriculum Reform",
+                       "detail":  "Joined Addis Ababa Education Bureau to coordinate curriculum reform initiatives, supporting educator development, and strengthening education policy implementation across the city.",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  2,
+        "fields":  {
+                       "year":  "2016",
+                       "title":  "Regional Innovation Coordination",
+                       "detail":  "Transitioned to the Ministry of Innovation and Technology, leading councils and regions coordination initiatives to align regional innovation programs and performance tracking.",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  3,
+        "fields":  {
+                       "year":  "2021",
+                       "title":  "National Innovation Program Leadership",
+                       "detail":  "Appointed Project Manager to lead national startup development programs, coordinating multi-stakeholder collaboration and policy execution for innovation-led growth in Ethiopia.",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  4,
+        "fields":  {
+                       "year":  "2022",
+                       "title":  "International Civic Engagement",
+                       "detail":  "Completed the African Civic Engagement Academy with University of Georgia and U.S. Department of State, expanding expertise in civic innovation practices and international collaboration.",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  5,
+        "fields":  {
+                       "year":  "2024",
+                       "title":  "Sustainability \u0026 Global Innovation",
+                       "detail":  "Participated in Scientific and Technological Innovation program for BRI countries in China and sustainability training in the United States, expanding global perspective on sustainable development.",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.storyitem",
+        "pk":  6,
+        "fields":  {
+                       "year":  "Present",
+                       "title":  "MBA in Sustainable Business",
+                       "detail":  "Pursuing MBA in Sustainable International Business and Foreign Trade while continuing to lead innovation initiatives and policy development in Ethiopia.",
+                       "sort_order":  6,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.experienceitem",
+        "pk":  1,
+        "fields":  {
+                       "role":  "Project Manager \u0026 Innovation Director",
+                       "organization":  "Ministry of Innovation and Technology, Ethiopia",
+                       "period":  "Oct 2021 - Present",
+                       "location":  "Addis Ababa, Ethiopia",
+                       "description":  "Leading national innovation strategy and startup ecosystem development initiatives. Responsible for coordinating multi-stakeholder partnerships, policy implementation, and capacity building across federal and regional levels.",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.experienceitem",
+        "pk":  2,
+        "fields":  {
+                       "role":  "Team Leader - Regional Coordination",
+                       "organization":  "Ministry of Innovation and Technology, Ethiopia",
+                       "period":  "2016 - 2021",
+                       "location":  "Addis Ababa, Ethiopia",
+                       "description":  "Led the Councils and Regions Coordination Directorate, overseeing regional innovation program implementation and institutional collaboration across Ethiopia.",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.experienceitem",
+        "pk":  3,
+        "fields":  {
+                       "role":  "Education Curriculum Coordinator",
+                       "organization":  "Addis Ababa Education Bureau",
+                       "period":  "2013 - 2016",
+                       "location":  "Addis Ababa, Ethiopia",
+                       "description":  "Coordinated city-wide curriculum reform initiatives, professional development programs, and education policy implementation across public schools.",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.educationitem",
+        "pk":  1,
+        "fields":  {
+                       "degree":  "MBA",
+                       "field":  "Sustainable International Business \u0026 Foreign Trade",
+                       "institution":  "India",
+                       "year":  "2025 (Ongoing)",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.educationitem",
+        "pk":  2,
+        "fields":  {
+                       "degree":  "MA",
+                       "field":  "Public Policy Studies",
+                       "institution":  "Ethiopian Civil Service University",
+                       "year":  "2021",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.educationitem",
+        "pk":  3,
+        "fields":  {
+                       "degree":  "BA",
+                       "field":  "Management",
+                       "institution":  "Bahir Dar University",
+                       "year":  "2022",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.educationitem",
+        "pk":  4,
+        "fields":  {
+                       "degree":  "BA",
+                       "field":  "Economics",
+                       "institution":  "Arsi University",
+                       "year":  "2021",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.educationitem",
+        "pk":  5,
+        "fields":  {
+                       "degree":  "BA",
+                       "field":  "History and Heritage Management",
+                       "institution":  "Debre Markos University",
+                       "year":  "2013",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  1,
+        "fields":  {
+                       "title":  "Scientific and Technological Innovation for BRI Countries",
+                       "organization":  "Ministry of Commerce, China",
+                       "period":  "2024",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  2,
+        "fields":  {
+                       "title":  "African Civic Engagement Academy",
+                       "organization":  "University of Georgia \u0026 U.S. Department of State",
+                       "period":  "2022",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  3,
+        "fields":  {
+                       "title":  "Creative Economy Program",
+                       "organization":  "British Council",
+                       "period":  "2022-2023",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  4,
+        "fields":  {
+                       "title":  "Understanding Sustainability Basics",
+                       "organization":  "Florida University Southeast",
+                       "period":  "2024",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  5,
+        "fields":  {
+                       "title":  "Innovation Leadership and Design Thinking",
+                       "organization":  "Professional Development",
+                       "period":  "",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  6,
+        "fields":  {
+                       "title":  "Entrepreneurship and Startup Ecosystem Development",
+                       "organization":  "UNDP",
+                       "period":  "",
+                       "sort_order":  6,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.programitem",
+        "pk":  7,
+        "fields":  {
+                       "title":  "ISO 9001:2015 Quality Management Systems",
+                       "organization":  "Professional Certification",
+                       "period":  "",
+                       "sort_order":  7,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  1,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Innovation Ecosystem Development",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  2,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Startup Incubation \u0026 Acceleration Support",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  3,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Sustainable International Business Strategy",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  4,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Public Policy Analysis \u0026 Implementation",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  5,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Project \u0026 Program Management",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  6,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Institutional Coordination \u0026 Collaboration",
+                       "sort_order":  6,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  7,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Strategic Planning \u0026 Leadership",
+                       "sort_order":  7,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  8,
+        "fields":  {
+                       "category":  "core",
+                       "label":  "Cross-Cultural Collaboration",
+                       "sort_order":  8,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  9,
+        "fields":  {
+                       "category":  "technical",
+                       "label":  "Python",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  10,
+        "fields":  {
+                       "category":  "technical",
+                       "label":  "Django",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  11,
+        "fields":  {
+                       "category":  "technical",
+                       "label":  "React",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  12,
+        "fields":  {
+                       "category":  "technical",
+                       "label":  "MySQL \u0026 Database Design",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  13,
+        "fields":  {
+                       "category":  "technical",
+                       "label":  "Full-Stack Web Development",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  14,
+        "fields":  {
+                       "category":  "language",
+                       "label":  "Amharic",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  15,
+        "fields":  {
+                       "category":  "language",
+                       "label":  "English",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  16,
+        "fields":  {
+                       "category":  "interest",
+                       "label":  "Sustainable Entrepreneurship",
+                       "sort_order":  1,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  17,
+        "fields":  {
+                       "category":  "interest",
+                       "label":  "Innovation-Led Economic Transformation",
+                       "sort_order":  2,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  18,
+        "fields":  {
+                       "category":  "interest",
+                       "label":  "International Trade \u0026 Market Systems",
+                       "sort_order":  3,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  19,
+        "fields":  {
+                       "category":  "interest",
+                       "label":  "Startup Ecosystem Strengthening",
+                       "sort_order":  4,
+                       "is_published":  true
+                   }
+    },
+    {
+        "model":  "portal.skillitem",
+        "pk":  20,
+        "fields":  {
+                       "category":  "interest",
+                       "label":  "Technology-Enabled Public Sector Reform",
+                       "sort_order":  5,
+                       "is_published":  true
+                   }
+    }
+]

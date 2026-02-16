@@ -5,8 +5,6 @@ const defaultBase = isLocalRuntime ? 'http://127.0.0.1:8000' : ''
 const rawBase = envBase || defaultBase
 const API_BASE = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase
 
-export const hasBackendApi = Boolean(API_BASE)
-
 export function apiUrl(path) {
   if (!path.startsWith('/')) {
     return API_BASE ? `${API_BASE}/${path}` : `/${path}`

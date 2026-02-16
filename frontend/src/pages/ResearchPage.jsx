@@ -1,92 +1,90 @@
-import Section from '../components/Section'
+import { EmptyState, PageHero, SectionIntro } from '../components/PageBlocks'
 
 export default function ResearchPage({ data }) {
-  const researchAssets = data.media?.research ?? []
+  const publications = data.publications || []
+  const researchAssets = data.media?.research || []
 
   return (
     <>
-      <Section title="Research and Ideas" subtitle="Publications, policy briefs, and concepts">
-        <div className="dual-grid">
-          <div className="stack">
-            <h3>Publications and Writing</h3>
-            {data.publications.map((item) => (
-              <article key={item.title} className="card subtle">
-                <div className="card-header">
-                  <h4>{item.title}</h4>
-                  <span>{item.year}</span>
-                </div>
-                <p className="muted">
-                  {item.type} - {item.status}
-                </p>
-                <p>{item.summary}</p>
-                <div className="resource-links">
-                  {item.url ? (
-                    <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
-                      External Link
-                    </a>
-                  ) : null}
-                  {item.document_url ? (
-                    <a className="text-link" href={item.document_url} target="_blank" rel="noreferrer">
-                      Download Document
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="stack">
-            <h3>Innovation Ideas</h3>
-            {data.ideas.map((item) => (
-              <article key={item.title} className="card subtle">
-                <div className="card-header">
-                  <h4>{item.title}</h4>
-                  <span>{item.stage}</span>
-                </div>
-                <p>{item.summary}</p>
-                <p className="muted">Impact: {item.impact}</p>
-                <div className="resource-links">
-                  {item.url ? (
-                    <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
-                      External Link
-                    </a>
-                  ) : null}
-                  {item.document_url ? (
-                    <a className="text-link" href={item.document_url} target="_blank" rel="noreferrer">
-                      Download Document
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="Research & Publications"
+        title="Research and Publications"
+        description="Backend-managed research and publication records."
+      />
 
-      <Section title="Research Assets" subtitle="Images and files from backend">
-        <div className="cards">
-          {researchAssets.length ? (
-            researchAssets.map((item) => (
-              <article key={item.id} className="card subtle">
-                <div className="card-header">
-                  <h4>{item.title}</h4>
-                  <span>{item.asset_type}</span>
+      <section className="py-5 section-surface" aria-label="Research publication list">
+        <div className="container">
+          <SectionIntro
+            eyebrow="Publications"
+            title="Research Works"
+            lead="Research and publication entries managed from backend."
+          />
+
+          {publications.length > 0 ? (
+            <div className="row g-4">
+              {publications.map((item, index) => (
+                <div className="col-12 col-lg-6" key={`${item.title}-${index}`} data-aos="fade-up" data-aos-delay={index * 60}>
+                  <article className="card profile-card h-100">
+                    <div className="card-body">
+                      <div className="d-flex flex-wrap gap-2 mb-2">
+                        {item.year && <span className="meta-chip">{item.year}</span>}
+                        {item.type && <span className="meta-chip">{item.type}</span>}
+                      </div>
+                      <h3 className="h6 mb-2">{item.title}</h3>
+                      {item.summary && <p className="muted-text mb-2">{item.summary}</p>}
+                      {item.url && (
+                        <a className="footer-link" href={item.url} target="_blank" rel="noreferrer">
+                          Open Link
+                        </a>
+                      )}
+                    </div>
+                  </article>
                 </div>
-                {item.asset_type === 'image' ? (
-                  <img className="inline-image" src={item.file_url} alt={item.title} loading="lazy" />
-                ) : null}
-                {item.caption ? <p>{item.caption}</p> : null}
-                <a className="text-link" href={item.file_url} target="_blank" rel="noreferrer">
-                  Open File
-                </a>
-              </article>
-            ))
+              ))}
+            </div>
           ) : (
-            <article className="card subtle">
-              <p className="muted">No research assets are published yet.</p>
-            </article>
+            <EmptyState icon="📘" title="No research entries yet" text="Publications will be listed here when available." />
           )}
         </div>
-      </Section>
+      </section>
+
+      <section className="py-5 section-surface-alt" aria-label="Research assets">
+        <div className="container">
+          <SectionIntro
+            eyebrow="Assets"
+            title="Research Materials"
+            lead="Visual and document materials supporting the research portfolio."
+          />
+
+          {researchAssets.length > 0 ? (
+            <div className="row g-4">
+              {researchAssets.map((item, index) => (
+                <div className="col-12 col-md-6 col-lg-4" key={item.id} data-aos="fade-up" data-aos-delay={index * 60}>
+                  <article className="card profile-card h-100 overflow-hidden">
+                    {item.asset_type === 'image' && item.file_url && (
+                      <img src={item.file_url} alt={item.title} className="img-fluid" loading="lazy" />
+                    )}
+                    <div className="card-body d-flex flex-column">
+                      <span className="meta-chip">{item.asset_type}</span>
+                      <h3 className="h6 mb-2">{item.title}</h3>
+                      {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
+                      {item.file_url && (
+                        <div className="mt-auto">
+                          <a className="btn btn-outline-gold" href={item.file_url} target="_blank" rel="noreferrer">
+                            Open File
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState icon="📁" title="No research assets yet" text="Supporting files will appear here." />
+          )}
+        </div>
+      </section>
     </>
   )
 }

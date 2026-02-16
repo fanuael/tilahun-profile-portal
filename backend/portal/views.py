@@ -4,18 +4,22 @@ import json
 
 from django.db import DatabaseError
 from django.http import HttpRequest, JsonResponse
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods
 
 from .models import (
+    BlogItem,
     ContactMessage,
     EducationItem,
     ExperienceItem,
     HighlightStat,
     IdeaItem,
     MediaAsset,
+    PassionContent,
     ProgramItem,
     PublicationItem,
+    ResumeContent,
     SiteProfile,
     SkillItem,
     StoryItem,
@@ -51,11 +55,12 @@ def serialize_media(request: HttpRequest, queryset) -> list[dict]:
 
 def load_content(request: HttpRequest) -> dict:
     profile = SiteProfile.objects.order_by("-updated_at").first()
+    resume_entry = ResumeContent.objects.order_by("-updated_at").first()
+    passion_entry = PassionContent.objects.order_by("-updated_at").first()
+    blog_items = BlogItem.objects.filter(is_published=True)
     stats = HighlightStat.objects.filter(is_published=True)
     story_items = StoryItem.objects.filter(is_published=True)
-    experience_items = ExperienceItem.objects.filter(is_published=True).prefetch_related(
-        "highlights"
-    )
+    experience_items = ExperienceItem.objects.filter(is_published=True)
     education_items = EducationItem.objects.filter(is_published=True)
     program_items = ProgramItem.objects.filter(is_published=True)
     skill_items = SkillItem.objects.filter(is_published=True)
@@ -78,38 +83,80 @@ def load_content(request: HttpRequest) -> dict:
         for item in media_payload
         if item["asset_type"] == MediaAsset.TYPE_IMAGE and item["section"] == MediaAsset.SECTION_HOME
     ]
-    library_documents = [
-        item
-        for item in media_payload
-        if item["asset_type"] == MediaAsset.TYPE_DOCUMENT and item["section"] == MediaAsset.SECTION_LIBRARY
-    ]
     profile_version = str(int(profile.updated_at.timestamp())) if profile else None
 
     profile_payload = {
-        "name": profile.name if profile else "Tilahun Alene Terfie",
-        "title": profile.title if profile else "Innovation and Sustainable Business Professional",
-        "location": profile.location if profile else "Addis Ababa, Ethiopia",
-        "email": profile.email if profile else "tilahunalenee@gmail.com",
-        "phone": profile.phone if profile else "+251 941 883 746",
-        "nationality": profile.nationality if profile else "Ethiopian",
+        "name": profile.name if profile else "",
+        "title": profile.title if profile else "",
+        "location": profile.location if profile else "",
+        "email": profile.email if profile else "",
+        "phone": profile.phone if profile else "",
+        "nationality": profile.nationality if profile else "",
         "current_focus": profile.current_focus if profile else "",
         "hero_image_url": (
             file_url(request, profile.hero_image, profile_version)
             if profile and profile.hero_image
             else (home_images[0]["file_url"] if home_images else "")
         ),
-        "cv_url": (
-            file_url(request, profile.cv_document, profile_version)
-            if profile and profile.cv_document
-            else (library_documents[0]["file_url"] if library_documents else "")
-        ),
+        "cv_url": "",
         "updated_at": profile.updated_at.isoformat() if profile else "",
     }
+
+    blog_payload = [
+        {
+            "id": item.id,
+            "category": item.category,
+            "title": item.title,
+            "summary": item.summary,
+            "content": item.content,
+            "url": item.external_url,
+            "published_on": item.published_on.isoformat() if item.published_on else "",
+        }
+        for item in blog_items
+    ]
 
     return {
         "profile": profile_payload,
         "summary": profile.summary if profile else "",
+        "resume_text": (
+            resume_entry.content
+            if resume_entry
+            else (profile.resume_text if profile else "")
+        ),
+        "passion_text": (
+            passion_entry.content
+            if passion_entry
+            else (profile.passion_text if profile else "")
+        ),
+        "resume": {
+            "title": resume_entry.title if resume_entry else "Resume",
+            "content": (
+                resume_entry.content
+                if resume_entry
+                else (profile.resume_text if profile else "")
+            ),
+        },
+        "passion": {
+            "title": passion_entry.title if passion_entry else "Passion",
+            "content": (
+                passion_entry.content
+                if passion_entry
+                else (profile.passion_text if profile else "")
+            ),
+        },
         "contact_blurb": profile.collaboration_blurb if profile else "",
+        "blogs": {
+            "all": blog_payload,
+            "news": [
+                item for item in blog_payload if item["category"] == BlogItem.CATEGORY_NEWS
+            ],
+            "articles": [
+                item for item in blog_payload if item["category"] == BlogItem.CATEGORY_ARTICLES
+            ],
+            "insights": [
+                item for item in blog_payload if item["category"] == BlogItem.CATEGORY_INSIGHTS
+            ],
+        },
         "stats": [{"label": item.label, "value": item.value} for item in stats],
         "story": [
             {
@@ -126,7 +173,6 @@ def load_content(request: HttpRequest) -> dict:
                 "period": item.period,
                 "location": item.location,
                 "description": item.description,
-                "highlights": [highlight.text for highlight in item.highlights.all()],
             }
             for item in experience_items
         ],
@@ -207,11 +253,13 @@ def root(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
+@never_cache
 def health(request: HttpRequest) -> JsonResponse:
     return JsonResponse({"status": "ok"}, status=200)
 
 
 @require_GET
+@never_cache
 def content(request: HttpRequest) -> JsonResponse:
     try:
         payload = load_content(request)
@@ -224,6 +272,7 @@ def content(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
+@never_cache
 def story(request: HttpRequest) -> JsonResponse:
     try:
         payload = load_content(request).get("story", [])
@@ -236,6 +285,7 @@ def story(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
+@never_cache
 def publications(request: HttpRequest) -> JsonResponse:
     try:
         payload = load_content(request).get("publications", [])
@@ -248,6 +298,7 @@ def publications(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
+@never_cache
 def ideas(request: HttpRequest) -> JsonResponse:
     try:
         payload = load_content(request).get("ideas", [])
@@ -260,6 +311,7 @@ def ideas(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
+@never_cache
 def media(request: HttpRequest) -> JsonResponse:
     try:
         payload = load_content(request).get("media", {})
@@ -274,21 +326,29 @@ def media(request: HttpRequest) -> JsonResponse:
 @csrf_exempt
 @require_http_methods(["POST"])
 def contact(request: HttpRequest) -> JsonResponse:
-    try:
-        payload = json.loads(request.body.decode("utf-8"))
-    except (json.JSONDecodeError, UnicodeDecodeError):
-        return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
+    raw_body = request.body.decode("utf-8", errors="ignore").strip()
+    payload = {}
 
-    required = ("name", "email", "subject", "message")
-    if not all(payload.get(key) for key in required):
-        return JsonResponse({"detail": "Missing required fields"}, status=400)
+    if raw_body:
+        try:
+            payload = json.loads(raw_body)
+        except json.JSONDecodeError:
+            return JsonResponse({"detail": "Invalid JSON payload"}, status=400)
+
+    if not isinstance(payload, dict):
+        return JsonResponse({"detail": "JSON object payload is required"}, status=400)
+
+    def clean_optional(value):
+        if value is None:
+            return ""
+        return str(value).strip()
 
     try:
         ContactMessage.objects.create(
-            name=str(payload["name"]).strip(),
-            email=str(payload["email"]).strip(),
-            subject=str(payload["subject"]).strip(),
-            message=str(payload["message"]).strip(),
+            name=clean_optional(payload.get("name")),
+            email=clean_optional(payload.get("email")),
+            subject=clean_optional(payload.get("subject")),
+            message=clean_optional(payload.get("message")),
         )
     except DatabaseError:
         return JsonResponse(

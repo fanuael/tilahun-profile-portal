@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -146,6 +145,9 @@ CORS_ALLOWED_ORIGINS = env_csv(
     "DJANGO_CORS_ALLOWED_ORIGINS",
     "http://127.0.0.1:5173,http://localhost:5173",
 )
+CORS_ALLOWED_ORIGIN_REGEXES = env_csv("DJANGO_CORS_ALLOWED_ORIGIN_REGEXES", "")
+CORS_ALLOW_ALL_ORIGINS = os.environ.get("DJANGO_CORS_ALLOW_ALL_ORIGINS", "0") == "1"
+CORS_ALLOW_CREDENTIALS = os.environ.get("DJANGO_CORS_ALLOW_CREDENTIALS", "0") == "1"
 
 CSRF_TRUSTED_ORIGINS = env_csv(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
