@@ -17,7 +17,7 @@ import StoryPage from './pages/StoryPage'
 import WorkPage from './pages/WorkPage'
 
 export default function App() {
-  const { data, status, error, refresh } = useProfileContent()
+  const { data, status, error, refresh, source } = useProfileContent()
 
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -48,7 +48,7 @@ export default function App() {
           <Route path="/ideas" element={<IdeasPage data={data} />} />
           <Route path="/work" element={<WorkPage data={data} />} />
           <Route path="/research" element={<ResearchPage data={data} />} />
-          <Route path="/contact" element={<ContactPage data={data} status={status} />} />
+          <Route path="/contact" element={<ContactPage data={data} status={status} source={source} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

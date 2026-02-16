@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { apiUrl } from './api'
+import { apiUrl, IS_SNAPSHOT_MODE } from './api'
 
 export const emptyData = {
   profile: {
@@ -59,19 +59,15 @@ export function useProfileContent() {
   const [data, setData] = useState(emptyData)
   const [status, setStatus] = useState('loading')
   const [error, setError] = useState(null)
+  const [source, setSource] = useState(IS_SNAPSHOT_MODE ? 'snapshot' : 'api')
 
-  const loadContent = useCallback(async ({ signal, silent = false } = {}) => {
-    if (!silent) {
-      setStatus('loading')
-    }
-    setError(null)
-
-    const response = await fetch(apiUrl('/api/content'), {
+  const fetchJson = useCallback(async (url, { signal, cache = 'no-store' } = {}) => {
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json'
       },
-      cache: 'no-store',
+      cache,
       signal
     })
 
@@ -79,7 +75,24 @@ export function useProfileContent() {
       throw new Error(`Content API request failed (${response.status})`)
     }
 
-    const payload = await response.json()
+    const contentType = response.headers.get('content-type') || ''
+    if (!contentType.toLowerCase().includes('application/json')) {
+      throw new Error(`Expected JSON but received ${contentType || 'unknown content type'}`)
+    }
+
+    return response.json()
+  }, [])
+
+  const loadContent = useCallback(async ({ signal, silent = false } = {}) => {
+    if (!silent) {
+      setStatus('loading')
+    }
+    setError(null)
+
+    const useSnapshot = IS_SNAPSHOT_MODE
+    const payload = useSnapshot
+      ? await fetchJson('/published-content.json', { signal, cache: 'no-cache' })
+      : await fetchJson(apiUrl('/api/content'), { signal, cache: 'no-store' })
     const normalized = {
       ...emptyData,
       ...payload,
@@ -93,8 +106,9 @@ export function useProfileContent() {
       }
     }
     setData(normalized)
+    setSource(useSnapshot ? 'snapshot' : 'api')
     setStatus('ready')
-  }, [])
+  }, [fetchJson])
 
   const handleLoadError = useCallback((loadError) => {
     if (loadError.name === 'AbortError') {
@@ -134,5 +148,5 @@ export function useProfileContent() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
   }, [handleLoadError, loadContent])
 
-  return { data, status, error, refresh }
+  return { data, status, error, refresh, source }
 }

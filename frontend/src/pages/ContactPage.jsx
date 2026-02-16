@@ -17,10 +17,10 @@ function getPhoneHref(phone) {
   return cleanedPhone ? `tel:${cleanedPhone}` : ''
 }
 
-export default function ContactPage({ data, status }) {
+export default function ContactPage({ data, status, source = 'api' }) {
   const [form, setForm] = useState(defaultForm)
   const [formStatus, setFormStatus] = useState('idle')
-  const apiFormEnabled = status === 'ready'
+  const apiFormEnabled = status === 'ready' && source === 'api'
   const phoneHref = getPhoneHref(data.profile.phone)
 
   const handleChange = (event) => {
