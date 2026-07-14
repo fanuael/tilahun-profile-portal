@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "framework": "django",
+  "buildCommand": "bash build.sh",
+  "installCommand": "pip install -r requirements.txt",
+  "outputDirectory": "staticfiles"
+}
