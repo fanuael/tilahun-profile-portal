@@ -3,8 +3,13 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load local environment variables from .env if present.
+load_dotenv(BASE_DIR / '.env')
 
 
 def env_csv(name: str, default: str = "") -> list[str]:
@@ -75,15 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-# Database: MySQL by default, SQLite fallback when USE_SQLITE=1.
-if os.environ.get("USE_SQLITE", "0") == "1":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-else:
+# Database: SQLite is the default for local development. Use MySQL only when USE_MYSQL=1 is set.
+use_mysql = os.environ.get("USE_MYSQL", "0") == "1"
+if use_mysql:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
@@ -93,6 +92,13 @@ else:
             "HOST": os.environ.get("MYSQL_HOST", "127.0.0.1"),
             "PORT": os.environ.get("MYSQL_PORT", "3306"),
             "OPTIONS": {"charset": "utf8mb4"},
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
@@ -153,6 +159,13 @@ CSRF_TRUSTED_ORIGINS = env_csv(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
     "http://127.0.0.1:5173,http://localhost:5173",
 )
+# Also allow the common alternate dev/preview port 5174 used by Vite/python preview
+if not any('5174' in o for o in CORS_ALLOWED_ORIGINS):
+    CORS_ALLOWED_ORIGINS += ['http://127.0.0.1:5174', 'http://localhost:5174']
+if not any('5174' in o for o in CSRF_TRUSTED_ORIGINS):
+    CSRF_TRUSTED_ORIGINS += ['http://127.0.0.1:5174', 'http://localhost:5174']
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

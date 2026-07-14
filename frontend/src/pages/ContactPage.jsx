@@ -189,7 +189,7 @@ export default function ContactPage({ data, status, source = 'api' }) {
                       </div>
 
                       <div className="col-12">
-                        <button className="btn btn-gold" type="submit" disabled={formStatus === 'sending'}>
+                        <button className="btn btn-primary" type="submit" disabled={formStatus === 'sending'}>
                           {formStatus === 'sending'
                             ? 'Sending...'
                             : apiFormEnabled

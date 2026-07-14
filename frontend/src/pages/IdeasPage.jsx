@@ -36,7 +36,7 @@ export default function IdeasPage({ data }) {
                       {item.content && <p className="muted-text mb-3">{item.content}</p>}
                       <div className="mt-auto d-flex flex-wrap gap-2">
                         {item.url && (
-                          <a className="btn btn-outline-gold" href={item.url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.url} target="_blank" rel="noreferrer">
                             Open Link
                           </a>
                         )}
@@ -74,12 +74,12 @@ export default function IdeasPage({ data }) {
                       {item.summary && <p className="muted-text mb-3">{item.summary}</p>}
                       <div className="mt-auto d-flex flex-wrap gap-2">
                         {item.url && (
-                          <a className="btn btn-outline-gold" href={item.url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.url} target="_blank" rel="noreferrer">
                             Open Link
                           </a>
                         )}
                         {item.document_url && (
-                          <a className="btn btn-outline-gold" href={item.document_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.document_url} target="_blank" rel="noreferrer">
                             View File
                           </a>
                         )}
@@ -119,7 +119,7 @@ export default function IdeasPage({ data }) {
                       {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
                       {item.file_url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-gold" href={item.file_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.file_url} target="_blank" rel="noreferrer">
                             Open File
                           </a>
                         </div>

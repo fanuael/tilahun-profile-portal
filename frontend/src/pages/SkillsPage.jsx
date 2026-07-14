@@ -32,8 +32,8 @@ export default function SkillsPage({ data }) {
         title="Skills and Expertise"
         description="A structured view of professional, technical, and communication strengths."
         actions={[
-          { label: 'Back to Home', to: '/#skills', variant: 'outline' },
-          { label: 'Contact', to: '/contact', variant: 'gold' }
+            { label: 'Back to Home', to: '/#skills', variant: 'outline' },
+          { label: 'Contact', to: '/contact', variant: 'primary' }
         ]}
       />
 
@@ -98,7 +98,7 @@ export default function SkillsPage({ data }) {
           </div>
 
           <div className="mt-4" data-aos="fade-up">
-            <Link className="btn btn-gold" to="/contact">
+            <Link className="btn btn-primary" to="/contact">
               Discuss Collaboration
             </Link>
           </div>

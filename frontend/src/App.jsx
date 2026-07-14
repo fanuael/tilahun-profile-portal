@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout-new'
 import { useProfileContent } from './content'
 import ContactPage from './pages/ContactPage'
+import CertificatesPage from './pages/CertificatesPage'
 import EducationPage from './pages/EducationPage'
 import ExperiencePage from './pages/ExperiencePage'
 import HomePage from './pages/HomePage'
@@ -27,7 +28,7 @@ export default function App() {
             <div className="container">
               <div className="alert alert-warning d-flex flex-column flex-md-row align-items-md-center gap-3 mb-0" role="alert">
                 <span>{error || 'Unable to load live content from backend.'}</span>
-                <button className="btn btn-outline-gold btn-sm" type="button" onClick={refresh}>
+                <button className="btn btn-outline-primary btn-sm" type="button" onClick={refresh}>
                   Retry Sync
                 </button>
               </div>
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/ideas" element={<IdeasPage data={data} />} />
           <Route path="/work" element={<WorkPage data={data} />} />
           <Route path="/research" element={<ResearchPage data={data} />} />
+          <Route path="/certificates" element={<CertificatesPage data={data} />} />
           <Route path="/contact" element={<ContactPage data={data} status={status} source={source} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

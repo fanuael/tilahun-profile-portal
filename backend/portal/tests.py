@@ -1,4 +1,5 @@
 import json
+from unittest.mock import patch
 
 from django.test import Client, TestCase
 
@@ -110,3 +111,44 @@ class PortalApiTests(TestCase):
         self.assertEqual(saved.email, "")
         self.assertEqual(saved.subject, "")
         self.assertEqual(saved.message, "")
+
+    def test_assistant_returns_local_reply_without_api_key(self):
+        with patch.dict("os.environ", {"OPENAI_API_KEY": ""}, clear=False):
+            response = self.client.post(
+                "/api/assistant",
+                data=json.dumps({"message": "Hello there"}),
+                content_type="application/json",
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertIn("reply", payload)
+        self.assertIn("Hello there", payload["reply"])
+
+    def test_assistant_uses_profile_data_for_identity_questions(self):
+        with patch.dict("os.environ", {"OPENAI_API_KEY": ""}, clear=False):
+            response = self.client.post(
+                "/api/assistant",
+                data=json.dumps({"message": "Who is Tilahun"}),
+                content_type="application/json",
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertIn("Tilahun Alene Terfie", payload["reply"])
+        self.assertIn("innovation", payload["reply"].lower())
+
+    def test_assistant_falls_back_to_local_reply_on_provider_error(self):
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "invalid-key"}, clear=False):
+            response = self.client.post(
+                "/api/assistant",
+                data=json.dumps({"message": "Hello from a bad key"}),
+                content_type="application/json",
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertIn("reply", payload)
+        self.assertIn("Hello from a bad key", payload["reply"])
+        self.assertIn("ai_provider_error", payload)
+        self.assertIn("ai_provider_status", payload)

@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import (
     ArticleItem,
     BlogItem,
+    CertificateItem,
     ContactMessage,
     EducationItem,
     ExperienceItem,
@@ -153,6 +154,18 @@ class PublicationItemAdmin(admin.ModelAdmin):
     list_display = ("title", "year", "item_type", "status", "sort_order", "is_published")
     list_editable = ("sort_order", "is_published")
     search_fields = ("title", "summary", "year", "item_type", "status")
+
+
+@admin.register(CertificateItem)
+class CertificateItemAdmin(admin.ModelAdmin):
+    list_display = ("title", "issuer", "section", "issued_on", "sort_order", "is_published")
+    list_filter = ("section", "is_published")
+    list_editable = ("sort_order", "is_published")
+    search_fields = ("title", "issuer", "summary")
+    fieldsets = (
+        (None, {"fields": ("title", "issuer", "section", "issued_on", "expires_on", "summary")}),
+        ("Assets", {"fields": ("document", "certificate_image")}),
+    )
 
 
 @admin.register(IdeaItem)

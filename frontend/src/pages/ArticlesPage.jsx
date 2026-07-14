@@ -34,7 +34,7 @@ export default function ArticlesPage({ data }) {
                       {item.content && <p className="muted-text mb-3">{item.content}</p>}
                       {item.url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-gold" href={item.url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.url} target="_blank" rel="noreferrer">
                             Open Link
                           </a>
                         </div>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import AOS from 'aos'
+import AIWidget from './AIWidget'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 const footerSectionLinks = [
@@ -13,7 +15,8 @@ const primaryNavLinks = [
   { to: '/', label: 'Home', end: true },
   { to: '/experience', label: 'Experience' },
   { to: '/education', label: 'Education' },
-  { to: '/skills', label: 'Skills' }
+  { to: '/skills', label: 'Skills' },
+  { to: '/certificates', label: 'Certificates' }
 ]
 
 const resumeLinks = [
@@ -70,39 +73,16 @@ export default function Layout({ data, children }) {
   }, [location.pathname, location.hash])
 
   useEffect(() => {
-    let timerId = 0
-    let attempts = 0
-
-    const initAos = () => {
-      if (window.AOS) {
-        window.AOS.init({
-          duration: 700,
-          once: true,
-          easing: 'ease-out-cubic',
-          offset: 70
-        })
-        return
-      }
-
-      attempts += 1
-      if (attempts < 10) {
-        timerId = window.setTimeout(initAos, 140)
-      }
-    }
-
-    initAos()
-
-    return () => {
-      if (timerId) {
-        window.clearTimeout(timerId)
-      }
-    }
+    AOS.init({
+      duration: 700,
+      once: true,
+      easing: 'ease-out-cubic',
+      offset: 70
+    })
   }, [])
 
   useEffect(() => {
-    if (window.AOS) {
-      window.AOS.refreshHard()
-    }
+    AOS.refreshHard()
   }, [location.pathname, location.hash])
 
   const handleSectionNav = (sectionId) => (event) => {
@@ -142,7 +122,7 @@ export default function Layout({ data, children }) {
     links.some((link) => (link.matchPaths || [link.to]).includes(location.pathname))
 
   return (
-    <div className="site-app min-h-screen bg-slate-50 text-slate-900">
+    <div className="site-app min-h-screen text-slate-900">
       <header>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top site-navbar" aria-label="Main navigation">
           <div className="container">
@@ -320,6 +300,9 @@ export default function Layout({ data, children }) {
           </div>
         </div>
       </footer>
+      {/* AI assistant widget */}
+      <AIWidget />
     </div>
   )
 }
+

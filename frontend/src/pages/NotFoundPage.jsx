@@ -13,10 +13,10 @@ export default function NotFoundPage() {
               The page you requested does not exist or may have been moved.
             </p>
             <div className="d-flex flex-wrap gap-3 justify-content-center">
-              <Link className="btn btn-gold" to="/">
+              <Link className="btn btn-primary" to="/">
                 Return Home
               </Link>
-              <Link className="btn btn-outline-gold" to="/contact">
+              <Link className="btn btn-outline-primary" to="/contact">
                 Contact
               </Link>
             </div>

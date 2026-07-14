@@ -30,7 +30,7 @@ export default function Layout({ data, children }) {
   return (
     <div className="flex flex-col min-h-screen bg-bg selection:bg-gold/30 selection:text-gold-strong">
       <header 
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled 
             ? 'py-3 bg-white/90 backdrop-blur-md shadow-lg border-b border-gold/10' 
             : 'py-5 bg-white/30 backdrop-blur-sm'
@@ -94,8 +94,27 @@ export default function Layout({ data, children }) {
         </nav>
       </header>
 
-      <main className="flex-grow">
-        {children}
+      {/* Page background wrapper — per-page backgrounds are defined in index.css */}
+      <main className={`flex-grow page-bg page-bg--${{
+        '/': 'home',
+        '/story': 'home',
+        '/experience': 'experience',
+        '/education': 'education',
+        '/skills': 'skills',
+        '/resume': 'education',
+        '/passion': 'ideas',
+        '/articles': 'articles',
+        '/publications': 'articles',
+        '/insights': 'research',
+        '/ideas': 'ideas',
+        '/work': 'work',
+        '/research': 'research',
+        '/certificates': 'certificates',
+        '/contact': 'contact'
+      }[location.pathname] || 'home'}`}>
+        <div className="page-content">
+          {children}
+        </div>
       </main>
 
       <footer className="mt-auto">

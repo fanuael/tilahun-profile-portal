@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="gidea" x1="0" x2="1"><stop offset="0" stop-color="#061b2a"/><stop offset="1" stop-color="#083144"/></linearGradient>
+    <radialGradient id="ridea" cx="30%" cy="40%"><stop offset="0" stop-color="#9ff1d3" stop-opacity="0.12"/><stop offset="1" stop-color="#061b2a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#gidea)" />
+  <rect width="100%" height="100%" fill="url(#ridea)" />
+  <g stroke="rgba(255,255,255,0.06)" fill="none">
+    <path d="M140 680 C420 560 800 740 1400 640" />
+    <circle cx="1200" cy="180" r="84" />
+  </g>
+</svg>

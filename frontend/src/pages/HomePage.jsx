@@ -29,7 +29,25 @@ export default function HomePage({ data }) {
       <section id="hero" className="hero-section vh-100 d-flex align-items-center section-anchor" aria-label="Hero">
         <div className="container py-5">
           <div className="row align-items-center g-4">
-            <div className="col-lg-7" data-aos="fade-up">
+            <div className="col-lg-5 hero-visual-panel d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-right">
+              <div className="hero-image-box mb-4">
+                {data.profile.hero_image_url ? (
+                  <img
+                    className="hero-image hero-image--large"
+                    src={data.profile.hero_image_url}
+                    alt={data.profile.name}
+                    loading="lazy"
+                  />
+                ) : null}
+              </div>
+              {data.profile.current_focus && <p className="hero-image-bio">{data.profile.current_focus}</p>}
+              <div className="hero-image-meta mt-4">
+                {data.profile.location && <p className="muted-text mb-1">{data.profile.location}</p>}
+                {data.profile.nationality && <p className="muted-text mb-0">Nationality: {data.profile.nationality}</p>}
+              </div>
+            </div>
+
+            <div className="col-lg-7 hero-copy-panel" data-aos="fade-up">
               <p className="section-eyebrow">Executive Profile</p>
               <h1 className="display-5 fw-semibold mb-3">{data.profile.name}</h1>
               <p className="hero-subtitle fs-5 mb-3">{data.profile.title}</p>
@@ -39,34 +57,16 @@ export default function HomePage({ data }) {
                 <p className="section-lead mb-4">Profile summary will be updated soon.</p>
               )}
               <div className="d-flex flex-wrap gap-3">
-                <a className="btn btn-gold" href="#contact">
+                <a className="btn btn-primary" href="#contact">
                   Contact Me
                 </a>
-                <Link className="btn btn-outline-gold" to="/contact">
+                <Link className="btn btn-outline-primary" to="/contact">
                   Send Message
                 </Link>
                 <Link className="btn btn-outline-light rounded-pill px-4" to="/work">
                   View Full Profile
                 </Link>
               </div>
-            </div>
-
-            <div className="col-lg-5" data-aos="fade-left">
-              <article className="card profile-card h-100">
-                <div className="card-body">
-                  {data.profile.hero_image_url ? (
-                    <img
-                      className="hero-image rounded-3 mb-3"
-                      src={data.profile.hero_image_url}
-                      alt={data.profile.name}
-                      loading="lazy"
-                    />
-                  ) : null}
-                  {data.profile.current_focus && <p className="mb-2 fw-medium">{data.profile.current_focus}</p>}
-                  {data.profile.location && <p className="muted-text mb-1">{data.profile.location}</p>}
-                  {data.profile.nationality && <p className="muted-text mb-0">Nationality: {data.profile.nationality}</p>}
-                </div>
-              </article>
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function HomePage({ data }) {
                           ))}
                         </ul>
                       ) : (
-                        <p className="muted-text mb-0">Details available on the full Experience page.</p>
+                        <p className="muted-text mb-0">Highlights will be shared here.</p>
                       )}
                     </div>
                   </article>

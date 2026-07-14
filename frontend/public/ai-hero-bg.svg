@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" stop-opacity="0.18"/>
+      <stop offset="40%" stop-color="#fcd34d" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.14"/>
+      <stop offset="55%" stop-color="#a78bfa" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#fb7185" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="860" cy="160" r="210" fill="url(#grad)"/>
+    <circle cx="240" cy="210" r="170" fill="url(#grad2)"/>
+    <path d="M270 560c64-72 178-98 272-73 94 25 188 70 266 20 78-50 106-181 202-232" stroke="#fff" stroke-opacity="0.18" stroke-width="18" fill="none"/>
+    <path d="M1090 720c-146-68-322-32-489 20-167 52-310 65-448-24" stroke="#fde68a" stroke-opacity="0.12" stroke-width="14" fill="none"/>
+    <path d="M95 700c172-94 290-203 450-226 160-23 310 30 445 120" stroke="#f9a8d4" stroke-opacity="0.08" stroke-width="20" fill="none"/>
+    <rect x="0" y="0" width="1200" height="800" fill="url(#grad)" opacity="0.06"/>
+    <rect x="0" y="0" width="1200" height="800" fill="url(#grad2)" opacity="0.05"/>
+  </g>
+</svg>

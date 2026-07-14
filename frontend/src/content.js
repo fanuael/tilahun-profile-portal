@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { apiUrl, IS_SNAPSHOT_MODE } from './api'
 
+const REFRESH_INTERVAL_MS = 15000
+
 export const emptyData = {
   profile: {
     name: 'Profile',
@@ -42,6 +44,7 @@ export const emptyData = {
   interests: [],
   publications: [],
   ideas: [],
+  certificates: [],
   media: {
     all: [],
     images: [],
@@ -100,6 +103,7 @@ export function useProfileContent() {
         ...emptyData.profile,
         ...(payload.profile || {})
       },
+      certificates: payload.certificates || [],
       media: {
         ...emptyData.media,
         ...(payload.media || {})
@@ -146,6 +150,14 @@ export function useProfileContent() {
 
     document.addEventListener('visibilitychange', handleVisibilityChange)
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [handleLoadError, loadContent])
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      loadContent({ silent: true }).catch(handleLoadError)
+    }, REFRESH_INTERVAL_MS)
+
+    return () => clearInterval(intervalId)
   }, [handleLoadError, loadContent])
 
   return { data, status, error, refresh, source }

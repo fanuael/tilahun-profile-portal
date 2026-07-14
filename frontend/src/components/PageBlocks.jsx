@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 function actionClassName(variant) {
   switch (variant) {
     case 'outline':
-      return 'btn btn-outline-gold'
+      return 'btn btn-outline-primary'
     case 'light':
       return 'btn btn-light text-dark rounded-pill px-4'
     default:
-      return 'btn btn-gold'
+      return 'btn btn-primary'
   }
 }
 

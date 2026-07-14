@@ -11,4 +11,5 @@ urlpatterns = [
     path("api/ideas", views.ideas, name="ideas"),
     path("api/media", views.media, name="media"),
     path("api/contact", views.contact, name="contact"),
+    path("api/assistant", views.assistant, name="assistant"),
 ]

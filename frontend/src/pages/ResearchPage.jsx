@@ -70,7 +70,7 @@ export default function ResearchPage({ data }) {
                       {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
                       {item.file_url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-gold" href={item.file_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.file_url} target="_blank" rel="noreferrer">
                             Open File
                           </a>
                         </div>

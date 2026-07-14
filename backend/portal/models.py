@@ -356,6 +356,39 @@ class IdeaItem(PublishableOrderedModel):
         return self.title
 
 
+class CertificateItem(PublishableOrderedModel):
+    SECTION_SHORT_TERM = "short_term"
+    SECTION_LONG_TERM = "long_term"
+    SECTION_PROFESSIONAL = "professional"
+    SECTION_ACADEMIC = "academic"
+    SECTION_OTHER = "other"
+
+    SECTION_CHOICES = (
+        (SECTION_SHORT_TERM, "Short-term"),
+        (SECTION_LONG_TERM, "Long-term"),
+        (SECTION_PROFESSIONAL, "Professional"),
+        (SECTION_ACADEMIC, "Academic"),
+        (SECTION_OTHER, "Other"),
+    )
+
+    title = models.CharField(max_length=255)
+    issuer = models.CharField(max_length=255, blank=True)
+    issued_on = models.CharField(max_length=120, blank=True)
+    expires_on = models.CharField(max_length=120, blank=True)
+    section = models.CharField(max_length=20, choices=SECTION_CHOICES, default=SECTION_OTHER)
+    summary = models.TextField(blank=True)
+    document = models.FileField(upload_to="certificates/documents/", blank=True, null=True)
+    certificate_image = models.ImageField(upload_to="certificates/images/", blank=True, null=True)
+
+    class Meta:
+        ordering = ["section", "sort_order", "id"]
+        verbose_name = "Certificate"
+        verbose_name_plural = "Certificates"
+
+    def __str__(self) -> str:
+        return self.title
+
+
 class MediaAsset(PublishableOrderedModel):
     TYPE_IMAGE = "image"
     TYPE_DOCUMENT = "document"

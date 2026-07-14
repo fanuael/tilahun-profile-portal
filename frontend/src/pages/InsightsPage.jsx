@@ -32,9 +32,9 @@ export default function InsightsPage({ data }) {
                       <h3 className="h5 mb-2">{item.title}</h3>
                       {item.summary && <p className="muted-text mb-2">{item.summary}</p>}
                       {item.content && <p className="muted-text mb-3">{item.content}</p>}
-                      {item.url && (
+                        {item.url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-gold" href={item.url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={item.url} target="_blank" rel="noreferrer">
                             Open Link
                           </a>
                         </div>
