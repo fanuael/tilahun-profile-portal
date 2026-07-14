@@ -45,3 +45,6 @@ pnpm-debug.log*
 .zencoder/
 .zenflow/
 .netlify/
+
+.vercel
+.env*
