@@ -29,10 +29,16 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
-ALLOWED_HOSTS = env_csv(
-    "DJANGO_ALLOWED_HOSTS",
-    "127.0.0.1,localhost,testserver",
-)
+default_allowed_hosts = ["127.0.0.1", "localhost", "testserver", ".vercel.app"]
+raw_allowed_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS")
+if raw_allowed_hosts:
+    ALLOWED_HOSTS = env_csv("DJANGO_ALLOWED_HOSTS", "")
+else:
+    ALLOWED_HOSTS = default_allowed_hosts
+
+# Allow Vercel preview and production domains even when the host is not explicitly listed.
+if not any(host == "*" for host in ALLOWED_HOSTS) and ".vercel.app" not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(".vercel.app")
 
 
 # Application definition

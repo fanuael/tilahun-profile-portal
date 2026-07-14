@@ -50,6 +50,13 @@ class PortalApiTests(TestCase):
         )
         self.story_id = story.id
 
+    def test_vercel_host_is_allowed(self):
+        response = self.client.get(
+            "/api/health",
+            HTTP_HOST="tilahun-profile-portal.vercel.app",
+        )
+        self.assertEqual(response.status_code, 200)
+
     def test_content_endpoint_returns_profile_data(self):
         response = self.client.get("/api/content")
         self.assertEqual(response.status_code, 200)
