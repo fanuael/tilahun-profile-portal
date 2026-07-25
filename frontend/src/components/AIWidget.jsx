@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { apiUrl } from '../api'
 
 export default function AIWidget() {
   const location = useLocation()
@@ -84,14 +85,16 @@ export default function AIWidget() {
         setCurrentSessionId(s.id)
         localStorage.setItem(STORAGE_KEY, JSON.stringify([s]))
       }
-    } catch (err) {
-      console.error('Failed to load chat sessions', err)
+    } catch (_err) {
+      // Silently ignore storage read failures in environments where localStorage is unavailable.
     }
   }, [])
 
   const saveSessions = (next) => {
     setSessions(next)
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch (e) { console.error(e) }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch (_e) {
+      // Ignore write failures when storage cannot be written.
+    }
   }
 
   const currentSession = sessions.find((s) => s.id === currentSessionId) || sessions[0] || { id: null, messages: [] }
@@ -99,20 +102,6 @@ export default function AIWidget() {
   const appendMessage = (msg) => {
     const next = sessions.map((s) => s.id === currentSessionId ? { ...s, messages: [...s.messages, msg] } : s)
     saveSessions(next)
-  }
-
-  const replaceFollowingAssistant = (index, assistantText) => {
-    // Replace assistant message that directly follows index if exists, else append
-    const s = currentSession
-    const msgs = [...s.messages]
-    const nextIdx = index + 1
-    if (msgs[nextIdx] && msgs[nextIdx].role === 'assistant') {
-      msgs[nextIdx] = { ...msgs[nextIdx], text: assistantText }
-    } else {
-      msgs.splice(nextIdx, 0, { role: 'assistant', text: assistantText })
-    }
-    const nextSessions = sessions.map((ss) => ss.id === s.id ? { ...ss, messages: msgs } : ss)
-    saveSessions(nextSessions)
   }
 
   const sendMessage = async (text, options = {}) => {
@@ -125,10 +114,7 @@ export default function AIWidget() {
     setSending(true)
 
     try {
-      const apiBase = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
-        ? `${window.location.protocol}//127.0.0.1:8000`
-        : ''
-      const res = await fetch(apiBase + '/api/assistant', {
+      const res = await fetch(apiUrl('/api/assistant'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: messageText, page: currentPage, url: location.pathname, structured: structuredEnabled })
@@ -137,23 +123,13 @@ export default function AIWidget() {
       if (!res.ok) throw new Error('Assistant error')
 
       const data = await res.json()
-      // If backend returned structured analysis directly
       if (data && (data.strengths || data.recommendations || data.pages)) {
         appendMessage({ role: 'assistant', structured: true, payload: data, ts: new Date().toISOString() })
       } else {
         const reply = data?.reply || 'No response received.'
-        // find index of the user message we just appended
-        const idx = (currentSession.messages || []).length
-        // since state may be stale, find by id
-        const s = sessions.find((ss) => ss.id === currentSessionId)
-        const i = (s?.messages || []).findIndex((m) => m.id === id)
-        if (i >= 0) {
-          replaceFollowingAssistant(i, reply)
-        } else {
-          appendMessage({ role: 'assistant', text: reply })
-        }
+        appendMessage({ role: 'assistant', text: reply, ts: new Date().toISOString() })
       }
-    } catch (err) {
+    } catch (_err) {
       appendMessage({ role: 'assistant', text: 'Assistant is unavailable.' })
     } finally {
       setSending(false)

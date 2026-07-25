@@ -1,4 +1,5 @@
 import { EmptyState, PageHero, SectionIntro } from '../components/PageBlocks'
+import { normalizeMediaUrl } from '../content'
 
 export default function IdeasPage({ data }) {
   const insightItems = data.blogs?.insights || []
@@ -79,7 +80,7 @@ export default function IdeasPage({ data }) {
                           </a>
                         )}
                         {item.document_url && (
-                          <a className="btn btn-outline-primary" href={item.document_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={normalizeMediaUrl(item.document_url)} target="_blank" rel="noreferrer">
                             View File
                           </a>
                         )}
@@ -109,7 +110,7 @@ export default function IdeasPage({ data }) {
                 <div className="col-12 col-md-6 col-lg-4" key={item.id} data-aos="fade-up" data-aos-delay={index * 60}>
                   <article className="card profile-card h-100 overflow-hidden">
                     {item.asset_type === 'image' && item.file_url && (
-                      <img src={item.file_url} alt={item.title} className="img-fluid" loading="lazy" />
+                      <img src={normalizeMediaUrl(item.file_url)} alt={item.title} className="img-fluid" loading="lazy" />
                     )}
                     <div className="card-body d-flex flex-column">
                       <div className="d-flex flex-wrap gap-2 mb-2">
@@ -119,7 +120,7 @@ export default function IdeasPage({ data }) {
                       {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
                       {item.file_url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-primary" href={item.file_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={normalizeMediaUrl(item.file_url)} target="_blank" rel="noreferrer">
                             Open File
                           </a>
                         </div>

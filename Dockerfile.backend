@@ -1,0 +1,41 @@
+# Backend Dockerfile for Django API service
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements.txt ./requirements.txt
+RUN python -m pip install --upgrade pip setuptools wheel
+RUN python -m pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+COPY backend/ ./backend/
+COPY backend/manage.py ./manage.py
+COPY backend/config ./config
+COPY backend/portal ./portal
+
+RUN python manage.py collectstatic --noinput
+
+FROM python:3.12-slim
+RUN addgroup --system app && adduser --system --ingroup app app
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /install /usr/local
+COPY --from=builder /app /app
+COPY backend/entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh && chown -R app:app /app
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+USER app
+WORKDIR /app
+EXPOSE 8000
+ENTRYPOINT ["/app/entrypoint.sh"]

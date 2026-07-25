@@ -52,16 +52,22 @@ class Command(BaseCommand):
         copied_files: set[Path] = set()
         media_url = settings.MEDIA_URL.rstrip("/") + "/"
 
+        published_media_prefix = "/published-media/"
+
         def remap_media_url(value: str) -> str:
             if not value:
                 return value
 
             parsed = urlparse(value)
             path = parsed.path if parsed.scheme or parsed.netloc else value
-            if not path.startswith(media_url):
+
+            if path.startswith(media_url):
+                relative_path = path[len(media_url) :].lstrip("/")
+            elif path.startswith(published_media_prefix):
+                relative_path = path[len(published_media_prefix) :].lstrip("/")
+            else:
                 return value
 
-            relative_path = path[len(media_url) :].lstrip("/")
             if not relative_path:
                 return value
 
@@ -76,7 +82,7 @@ class Command(BaseCommand):
             else:
                 self.stderr.write(f"Missing media file: {source_file}")
 
-            return f"/published-media/{relative_path.replace('\\', '/')}"
+            return published_media_prefix + relative_path.replace("\\", "/")
 
         def walk(data: Any) -> Any:
             if isinstance(data, dict):
@@ -92,6 +98,17 @@ class Command(BaseCommand):
             "generated_at": timezone.now().isoformat(),
             "source": "django-admin-export",
         }
+
+        # Copy any remaining media files from Django media root into the published snapshot.
+        if settings.MEDIA_ROOT and Path(settings.MEDIA_ROOT).exists():
+            for source_path in Path(settings.MEDIA_ROOT).rglob("*"):
+                if source_path.is_file():
+                    relative_path = source_path.relative_to(settings.MEDIA_ROOT)
+                    destination_path = output_media_dir / relative_path
+                    destination_path.parent.mkdir(parents=True, exist_ok=True)
+                    if destination_path not in copied_files:
+                        shutil.copy2(source_path, destination_path)
+                        copied_files.add(destination_path)
 
         output_json.write_text(json.dumps(exported, indent=2, ensure_ascii=False), encoding="utf-8")
         self.stdout.write(

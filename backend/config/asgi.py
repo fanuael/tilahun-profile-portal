@@ -14,3 +14,11 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
 application = get_asgi_application()
+
+try:
+    from config.admin_utils import enforce_admin_credentials
+except ImportError:
+    enforce_admin_credentials = None
+
+if enforce_admin_credentials is not None:
+    enforce_admin_credentials()

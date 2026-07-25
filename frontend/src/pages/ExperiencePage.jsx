@@ -1,4 +1,5 @@
 import { EmptyState, PageHero, SectionIntro } from '../components/PageBlocks'
+import { normalizeMediaUrl } from '../content'
 
 export default function ExperiencePage({ data }) {
   const experienceList = data.experience || []
@@ -70,7 +71,7 @@ export default function ExperiencePage({ data }) {
                       <h3 className="h6 mb-2">{item.title}</h3>
                       {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
                       <div className="mt-auto">
-                                    <a className="btn btn-outline-primary" href={item.file_url} target="_blank" rel="noreferrer">
+                                    <a className="btn btn-outline-primary" href={normalizeMediaUrl(item.file_url)} target="_blank" rel="noreferrer">
                           Open Document
                         </a>
                       </div>

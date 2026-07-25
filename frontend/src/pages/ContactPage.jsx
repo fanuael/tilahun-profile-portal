@@ -20,16 +20,35 @@ function getPhoneHref(phone) {
 export default function ContactPage({ data, status, source = 'api' }) {
   const [form, setForm] = useState(defaultForm)
   const [formStatus, setFormStatus] = useState('idle')
+  const [formErrors, setFormErrors] = useState({})
   const apiFormEnabled = status === 'ready' && source === 'api'
   const phoneHref = getPhoneHref(data.profile.phone)
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setForm((prev) => ({ ...prev, [name]: value }))
+    setFormErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setFormErrors({})
+
+    const errors = {}
+    if (!form.message.trim()) {
+      errors.message = 'Please enter a message.'
+    }
+    if (!form.email.trim()) {
+      errors.email = 'Please provide an email address so we can reply.'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      errors.email = 'Please provide a valid email address.'
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors)
+      setFormStatus('validation_error')
+      return
+    }
 
     if (!apiFormEnabled) {
       const subject = encodeURIComponent(form.subject || 'Profile Portal Contact')
@@ -148,14 +167,21 @@ export default function ContactPage({ data, status, source = 'api' }) {
                           Email Address
                         </label>
                         <input
-                          className="form-control"
+                          className={`form-control${formErrors.email ? ' is-invalid' : ''}`}
                           type="email"
                           id="email"
                           name="email"
                           value={form.email}
                           onChange={handleChange}
                           placeholder="you@example.com"
+                          aria-invalid={!!formErrors.email}
+                          aria-describedby={formErrors.email ? 'email-error' : undefined}
                         />
+                        {formErrors.email && (
+                          <div id="email-error" className="form-text text-danger">
+                            {formErrors.email}
+                          </div>
+                        )}
                       </div>
 
                       <div className="col-12">
@@ -178,14 +204,21 @@ export default function ContactPage({ data, status, source = 'api' }) {
                           Message
                         </label>
                         <textarea
-                          className="form-control"
+                          className={`form-control${formErrors.message ? ' is-invalid' : ''}`}
                           id="message"
                           name="message"
                           rows="6"
                           value={form.message}
                           onChange={handleChange}
                           placeholder="Share your request or collaboration details"
+                          aria-invalid={!!formErrors.message}
+                          aria-describedby={formErrors.message ? 'message-error' : undefined}
                         />
+                        {formErrors.message && (
+                          <div id="message-error" className="form-text text-danger">
+                            {formErrors.message}
+                          </div>
+                        )}
                       </div>
 
                       <div className="col-12">
@@ -200,6 +233,11 @@ export default function ContactPage({ data, status, source = 'api' }) {
                     </div>
                   </form>
 
+                  {formStatus === 'validation_error' && (
+                    <div className="alert alert-warning mt-4 mb-0" role="alert">
+                      Please correct the highlighted fields before submitting.
+                    </div>
+                  )}
                   {formStatus === 'success' && (
                     <div className="alert alert-success mt-4 mb-0" role="status">
                       Message sent successfully. Thank you.

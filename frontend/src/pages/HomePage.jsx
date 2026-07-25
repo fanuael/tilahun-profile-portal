@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SectionIntro } from '../components/PageBlocks'
+import { normalizeMediaUrl } from '../content'
 
 function getPhoneHref(phone) {
   if (!phone) {
@@ -13,6 +14,7 @@ export default function HomePage({ data }) {
   const stats = data.stats || []
   const summary = data.summary || ''
   const phoneHref = getPhoneHref(data.profile.phone)
+  const fallbackHeroImage = '/published-media/assets/Tilahun_Profile_Photo.JPG'
 
   const skillGroups = [
     { title: 'Core Skills', items: data.competencies || [] },
@@ -23,6 +25,7 @@ export default function HomePage({ data }) {
 
   const education = data.education || []
   const experience = data.experience || []
+  const heroImageUrl = normalizeMediaUrl(data.profile.hero_image_url)
 
   return (
     <>
@@ -31,14 +34,26 @@ export default function HomePage({ data }) {
           <div className="row align-items-center g-4">
             <div className="col-lg-5 hero-visual-panel d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-right">
               <div className="hero-image-box mb-4">
-                {data.profile.hero_image_url ? (
+                {heroImageUrl ? (
                   <img
                     className="hero-image hero-image--large"
-                    src={data.profile.hero_image_url}
+                    src={heroImageUrl}
+                    alt={data.profile.name}
+                    loading="lazy"
+                    onError={(event) => {
+                      if (!event.target.src.endsWith(fallbackHeroImage)) {
+                        event.target.src = fallbackHeroImage
+                      }
+                    }}
+                  />
+                ) : (
+                  <img
+                    className="hero-image hero-image--large"
+                    src={fallbackHeroImage}
                     alt={data.profile.name}
                     loading="lazy"
                   />
-                ) : null}
+                )}
               </div>
               {data.profile.current_focus && <p className="hero-image-bio">{data.profile.current_focus}</p>}
               <div className="hero-image-meta mt-4">

@@ -62,7 +62,7 @@ export default function ResearchPage({ data }) {
                 <div className="col-12 col-md-6 col-lg-4" key={item.id} data-aos="fade-up" data-aos-delay={index * 60}>
                   <article className="card profile-card h-100 overflow-hidden">
                     {item.asset_type === 'image' && item.file_url && (
-                      <img src={item.file_url} alt={item.title} className="img-fluid" loading="lazy" />
+                      <img src={normalizeMediaUrl(item.file_url)} alt={item.title} className="img-fluid" loading="lazy" />
                     )}
                     <div className="card-body d-flex flex-column">
                       <span className="meta-chip">{item.asset_type}</span>
@@ -70,7 +70,7 @@ export default function ResearchPage({ data }) {
                       {item.caption && <p className="muted-text mb-3">{item.caption}</p>}
                       {item.file_url && (
                         <div className="mt-auto">
-                          <a className="btn btn-outline-primary" href={item.file_url} target="_blank" rel="noreferrer">
+                          <a className="btn btn-outline-primary" href={normalizeMediaUrl(item.file_url)} target="_blank" rel="noreferrer">
                             Open File
                           </a>
                         </div>

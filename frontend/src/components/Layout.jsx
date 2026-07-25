@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { normalizeMediaUrl } from '../content'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -15,6 +16,7 @@ export default function Layout({ data, children }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const heroImageUrl = normalizeMediaUrl(data.profile.hero_image_url)
   const phoneHref = `tel:${(data.profile.phone || '').replace(/\s+/g, '')}`
 
   useEffect(() => {
@@ -42,11 +44,16 @@ export default function Layout({ data, children }) {
               <div className="w-3 h-3 rounded-full bg-gradient-to-br from-gold to-[#d7af7e] shadow-[0_0_0_5px_rgba(183,134,75,0.16)] group-hover:scale-110 group-hover:shadow-glow transition-all duration-300" />
             </div>
             <span className="font-bold text-ink tracking-tight text-lg">{data.profile.name}</span>
-            {data.profile.hero_image_url && (
+            {heroImageUrl && (
               <img 
                 className="w-11 h-[54px] rounded-lg2 object-cover object-[center_22%] border-2 border-gold-strong/30 hover:scale-110 transition-transform duration-300 shadow-elevation" 
-                src={data.profile.hero_image_url} 
+                src={heroImageUrl} 
                 alt={data.profile.name} 
+                onError={(event) => {
+                  if (event.target.src !== '/published-media/assets/Tilahun_Profile_Photo.JPG') {
+                    event.target.src = '/published-media/assets/Tilahun_Profile_Photo.JPG'
+                  }
+                }}
               />
             )}
           </div>

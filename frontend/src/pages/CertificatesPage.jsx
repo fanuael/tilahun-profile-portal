@@ -1,5 +1,5 @@
 import { EmptyState, PageHero, SectionIntro } from '../components/PageBlocks'
-import { API_BASE } from '../api'
+import { normalizeMediaUrl } from '../content'
 
 const SECTION_LABELS = {
   short_term: 'Short-term',
@@ -21,23 +21,6 @@ export default function CertificatesPage({ data }) {
   }, {})
 
   const sectionKeys = Object.keys(SECTION_LABELS).filter((key) => grouped[key]?.length > 0)
-
-  const normalizeMediaUrl = (url) => {
-    if (!url) return ''
-    try {
-      const parsed = new URL(url)
-      const mediaIndex = parsed.pathname.indexOf('/media/')
-      if (mediaIndex >= 0) {
-        return `${parsed.pathname.slice(mediaIndex)}${parsed.search}`
-      }
-    } catch {
-      // ignore invalid URLs
-    }
-    if (url.includes('/media/')) {
-      return url.slice(url.indexOf('/media/'))
-    }
-    return url
-  }
 
   return (
     <>
@@ -73,7 +56,7 @@ export default function CertificatesPage({ data }) {
                           {item.summary && <p className="muted-text mb-3">{item.summary}</p>}
                           {item.image_url ? (
                             <img
-                              src={item.image_url}
+                              src={normalizeMediaUrl(item.image_url)}
                               alt={item.title}
                               className="certificate-preview-image rounded mb-3"
                               loading="lazy"

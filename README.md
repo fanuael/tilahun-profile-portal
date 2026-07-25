@@ -59,6 +59,30 @@ Open `http://localhost:5173`.
 
 When running locally, frontend reads from `http://127.0.0.1:8000` automatically.
 
+## Docker / Coolify Production Deployment
+
+Use the Docker Compose deployment for production-ready hosting, including Coolify or other container platforms.
+
+1. Copy `.env.example` to `.env` and update the values for your environment.
+2. Ensure `DATABASE_URL` points to the `db` service or your managed Postgres instance.
+3. Build and run the stack:
+
+```powershell
+docker compose build
+docker compose up -d
+```
+
+4. Verify service status:
+
+```powershell
+docker compose ps
+docker compose logs -f backend
+```
+
+The frontend container is served on port `3000` and proxies `/api/`, `/media/`, and `/static/` to the backend.
+
+For same-origin deployment, leave `VITE_API_BASE_URL` empty in `.env` so the client requests relative API paths.
+
 ## Content Management and Publish
 
 1. Update content in Django admin (`SiteProfile`, education, experience, skills, publications, ideas, media).

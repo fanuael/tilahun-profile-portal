@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import json
+import os
 
+import requests
+from django.conf import settings
 from django.db import DatabaseError
 from django.http import HttpRequest, JsonResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods
-# No external AI provider usage — assistant runs locally.
+from urllib.parse import urlparse
 
 from .models import (
     BlogItem,
@@ -32,12 +35,35 @@ def file_url(request: HttpRequest, file_field, version: str | None = None) -> st
     if not file_field:
         return ""
     try:
-        url = request.build_absolute_uri(file_field.url)
+        raw_url = file_field.url
+        if not isinstance(raw_url, str):
+            return ""
+
+        parsed = urlparse(raw_url)
+        path = (parsed.path or raw_url).replace("\\", "/")
+        if settings.USE_PUBLISHED_MEDIA_URL:
+            if path.startswith(settings.MEDIA_URL):
+                relative_path = path[len(settings.MEDIA_URL) :].lstrip("/")
+                url = "/published-media/" + relative_path.replace("\\", "/")
+            elif path.startswith("/published-media/"):
+                url = path
+            else:
+                media_root_path = str(settings.MEDIA_ROOT).replace("\\", "/")
+                if media_root_path and path.startswith(media_root_path):
+                    relative_path = path[len(media_root_path) :].lstrip("/")
+                    url = "/published-media/" + relative_path.replace("\\", "/")
+                elif path.startswith("/tmp/media/"):
+                    url = "/published-media/" + path[len("/tmp/media/") :].lstrip("/")
+                else:
+                    url = request.build_absolute_uri(raw_url)
+        else:
+            url = request.build_absolute_uri(raw_url)
+
         if version:
             separator = "&" if "?" in url else "?"
             return f"{url}{separator}v={version}"
         return url
-    except ValueError:
+    except (ValueError, AttributeError):
         return ""
 
 
@@ -101,7 +127,7 @@ def load_content(request: HttpRequest) -> dict:
             if profile and profile.hero_image
             else (home_images[0]["file_url"] if home_images else "")
         ),
-        "cv_url": "",
+        "cv_url": file_url(request, profile.cv_document) if profile and profile.cv_document else "",
         "updated_at": profile.updated_at.isoformat() if profile else "",
     }
 
@@ -393,6 +419,13 @@ def _build_local_assistant_reply(request: HttpRequest, message: str, page: str =
     focus = profile.get("current_focus", "") if isinstance(profile, dict) else ""
     email = profile.get("email", "") if isinstance(profile, dict) else ""
     phone = profile.get("phone", "") if isinstance(profile, dict) else ""
+
+    greeting_keywords = ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"]
+    if any(lower_message == kw or lower_message.startswith(kw + " ") for kw in greeting_keywords):
+        return (
+            f"Hello there! I'm here to help you learn about {name}'s portfolio and professional work. "
+            "Ask me anything about the site or the experience, education, skills, publications, or contact details."
+        )
     
     # Page-specific question patterns
     page_questions = ["what's on", "what is on", "what can i find", "tell me about this", "what does", "about this page"]
@@ -567,6 +600,63 @@ def _build_local_assistant_reply(request: HttpRequest, message: str, page: str =
     
 
 
+def _call_openai_provider(message: str, page: str, url: str) -> tuple[str | None, str | None, int | None]:
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        return None, None, None
+
+    endpoint = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    system_prompt = (
+        "You are a helpful portfolio assistant for a professional profile website. "
+        "Answer user questions about the website structure, the owner's experience, education, skills, publications, and contact details. "
+        "If the user asks about a specific page, include that context in your response."
+    )
+    if page:
+        system_prompt += f" The current page is: {page}."
+    if url:
+        system_prompt += f" The current URL is: {url}."
+
+    payload = {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": message},
+        ],
+        "temperature": 0.2,
+        "max_tokens": 400,
+    }
+
+    try:
+        response = requests.post(endpoint, headers=headers, json=payload, timeout=20)
+    except requests.RequestException as exc:
+        return None, str(exc), None
+
+    try:
+        content = response.json()
+    except ValueError:
+        return None, f"Invalid JSON response from provider: {response.text}", response.status_code
+
+    if response.status_code != 200:
+        error_detail = None
+        if isinstance(content, dict):
+            error_detail = content.get("error", {}).get("message") if isinstance(content.get("error"), dict) else content.get("error")
+        return None, error_detail or response.text, response.status_code
+
+    choices = content.get("choices", [])
+    if not choices:
+        return None, "Provider returned no completion choices.", response.status_code
+
+    reply_text = choices[0].get("message", {}).get("content", "").strip()
+    if not reply_text:
+        return None, "Provider returned an empty reply.", response.status_code
+
+    return reply_text, None, response.status_code
+
+
 def _build_assistant_response(
     request: HttpRequest,
     message: str,
@@ -608,14 +698,25 @@ def assistant(request: HttpRequest) -> JsonResponse:
     message = str(payload.get("message", "")).strip()
     page = str(payload.get("page", "")).strip()
     url = str(payload.get("url", "")).strip()
-    
+
     if not message:
         return JsonResponse({"detail": "Message is required"}, status=400)
 
-    # Use only the local, rule-based assistant implementation.
     structured = bool(payload.get("structured", False))
+    if os.environ.get("OPENAI_API_KEY", "").strip():
+        reply_text, provider_error, provider_status = _call_openai_provider(message, page, url)
+        if reply_text:
+            return _build_assistant_response(request, message, reply_text, provider_error, provider_status)
+        # fallback to local reply if provider fails or returns invalid output
+        local_reply = _build_local_assistant_reply(request, message, page, url, structured=structured)
+        fallback_reply = (
+            f"Unable to use the external provider for your message: {message}. "
+            f"{local_reply}"
+        )
+        return _build_assistant_response(request, message, fallback_reply, provider_error, provider_status)
+
+    # Local reply when no provider API key is configured
     reply = _build_local_assistant_reply(request, message, page, url, structured=structured)
-    # If the assistant returned a structured payload, return it directly
     if isinstance(reply, dict):
         return JsonResponse(reply, status=200)
     return JsonResponse({"reply": reply}, status=200)

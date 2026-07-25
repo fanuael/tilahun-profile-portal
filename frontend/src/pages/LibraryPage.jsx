@@ -8,7 +8,7 @@ function FileCard({ item }) {
         <span>{item.section}</span>
       </div>
       {item.caption ? <p>{item.caption}</p> : null}
-      <a className="text-link" href={item.file_url} target="_blank" rel="noreferrer">
+      <a className="text-link" href={normalizeMediaUrl(item.file_url)} target="_blank" rel="noreferrer">
         Open File
       </a>
     </article>
@@ -26,7 +26,7 @@ export default function LibraryPage({ data }) {
           <div className="media-grid">
             {images.map((item) => (
               <figure key={item.id} className="media-card">
-                <img src={item.file_url} alt={item.title} loading="lazy" />
+                <img src={normalizeMediaUrl(item.file_url)} alt={item.title} loading="lazy" />
                 <figcaption>
                   <strong>{item.title}</strong>
                   {item.caption ? <span>{item.caption}</span> : null}

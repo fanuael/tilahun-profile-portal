@@ -53,7 +53,7 @@ export default function StoryPage({ data }) {
               {storyImages.map((item, index) => (
                 <div className="col-12 col-md-6 col-lg-4" key={item.id} data-aos="fade-up" data-aos-delay={index * 60}>
                   <article className="card profile-card h-100 overflow-hidden">
-                    <img src={item.file_url} alt={item.title} className="img-fluid" loading="lazy" />
+                    <img src={normalizeMediaUrl(item.file_url)} alt={item.title} className="img-fluid" loading="lazy" />
                     <div className="card-body">
                       <h3 className="h6 mb-2">{item.title}</h3>
                       {item.caption && <p className="muted-text mb-0">{item.caption}</p>}
