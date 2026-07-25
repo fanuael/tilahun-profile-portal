@@ -6,18 +6,15 @@
   "installCommand": "npm install",
   "routes": [
     {
-      "src": "^/published-media/(.*)$",
+      "src": "/published-media/(.*)",
       "dest": "/published-media/$1"
     },
     {
-      "src": "^/published-content\\.json$",
+      "src": "/published-content.json",
       "dest": "/published-content.json"
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "^/(.*)$",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
